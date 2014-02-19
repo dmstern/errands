@@ -1,1 +1,0 @@
-/home/daniel/Studium/Bachelorarbeit/Bsp-App/LICENSE.md
