@@ -1,4 +1,1 @@
-errands
-=======
-
-A simple cross platform ToDo app for localized Tasks
+/home/daniel/Studium/Bachelorarbeit/Bsp-App/README.md
