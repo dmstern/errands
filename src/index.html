@@ -12,6 +12,8 @@
     <script src="http://code.jquery.com/jquery-1.10.2.min.js">
     </script>
     <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+    <script src="logic/storage.js"></script>
+    <script src="logic/util.js"></script>
 </head>
 
 <body>
@@ -19,7 +21,7 @@
         <header data-role="header">
             <h1>Besorgungen</h1>
         </header>
-        <ul data-role="listview">
+        <ul data-role="listview" id="lists">
             <li>
                 <a href="#haushalt" data-transition="slide">Haushalt</a>
             </li>
@@ -34,16 +36,16 @@
 
     <div data-role="page" id="haushalt">
         <header data-role="header">
-            <a href="#" data-role="button" data-rel="back" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left ">Home</a>
+            <a href="#" data-role="button" data-rel="back" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left">Home</a>
             <h1>Haushalt</h1>
         </header>
         <div class="insert-new-task">
-            <form action="#">
-                <input type="text" placeholder="Task hinzufügen" />
-                <button data-role="button" type="submit" class="ui-btn ui-btn-inline " style="">OK</button>
+            <form id="formNewTask">
+                <input type="text" placeholder="Task hinzufügen" id="tfNewTask" />
+                <button id="btnNewTask " data-role="button " type="submit " class="ui-btn ui-btn-inline " style="">OK</button>
             </form>
         </div>
-        <ul data-role="listview">
+        <ul data-role="listview" id="listHaushalt">
             <li>
                 <a href="">Brot</a>
             </li>
