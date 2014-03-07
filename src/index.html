@@ -12,9 +12,10 @@
     <script src="http://code.jquery.com/jquery-1.10.2.min.js">
     </script>
     <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
-    <script src="lib/knockout-3.0.0.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
     <script src="logic/storage.js"></script>
     <script src="logic/util.js"></script>
+    <script src="logic/view-model.js"></script>
 </head>
 
 <body>
@@ -25,6 +26,7 @@
         <ul data-role="listview" id="lists">
             <!--data-bind="foreach: list"-->
             <!-- (noch nicht ausprobiert) -->
+
             <!--
             <li><a href="#haushalt" data-transition="slide">Haushalt</a>
 </li>
@@ -35,6 +37,11 @@
     <a href="#privat" data-transition="slide">Privat</a>
 </li>
 -->
+            <li data-bind="foreach: lists">
+                <!--                <a href="#" data-transition="slide" data-bind="text: lists().length"></a>-->
+                <a href="#" data-transition="slide">Blabla</a>
+            </li>
+
         </ul>
     </div>
 
