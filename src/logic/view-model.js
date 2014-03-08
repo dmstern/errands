@@ -5,19 +5,21 @@ $(document).ready(function () {
         this.name = name;
         this.members = members;
         this.tasks = tasks;
+        this.page = "#" + id;
     }
 
     function ErrandsViewModel(lists) {
-        this.lists = ko.observable(lists);
+        this.lists = ko.observableArray(lists);
+
     }
 
-    var listArray = ko.observableArray([
-        new List(1, "Privat", ["Tom", "Jerry"], ["kind abholen", "arzttermin"]),
-        new List(2, "Arbeit", ["Tom"], ["druckerpatronen", "papier"]),
-        new List(3, "Haushalt", ["Tom", "Jerry"], ["milch", "brot"])
-    ]);
+    var lists = new Array(
+        new List("list1", "Privat", ["Tom", "Jerry"], ["kind abholen", "arzttermin"]),
+        new List("list2", "Arbeit", ["Tom"], ["druckerpatronen", "papier"]),
+        new List("list3", "Haushalt", ["Tom", "Jerry"], ["milch", "brot"])
+    );
 
     // Activates knockout.js
-    ko.applyBindings(new ErrandsViewModel(listArray));
+    ko.applyBindings(new ErrandsViewModel(lists));
 
 });

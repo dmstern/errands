@@ -24,28 +24,13 @@
             <h1>Besorgungen</h1>
         </header>
         <ul data-role="listview" id="lists">
-            <!--data-bind="foreach: list"-->
-            <!-- (noch nicht ausprobiert) -->
-
-            <!--
-            <li><a href="#haushalt" data-transition="slide">Haushalt</a>
-</li>
-<li>
-    <a href="#arbeit" data-transition="slide">Arbeit</a>
-</li>
-<li>
-    <a href="#privat" data-transition="slide">Privat</a>
-</li>
--->
             <li data-bind="foreach: lists">
-                <!--                <a href="#" data-transition="slide" data-bind="text: lists().length"></a>-->
-                <a href="#" data-transition="slide">Blabla</a>
+                <a href="#" data-transition="slide" data-bind="text: name, attr: { href: page }"></a>
             </li>
-
         </ul>
     </div>
 
-    <div data-role="page" id="haushalt">
+    <div data-role="page" id="list1">
         <header data-role="header">
             <a href="#" data-role="button" data-rel="back" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left">Home</a>
             <h1>Haushalt</h1>
@@ -71,7 +56,7 @@
             </li>
         </ul>
     </div>
-    <div data-role="page" id="arbeit">
+    <div data-role="page" id="list2">
         <header data-role="header">
             <a href="#" data-role="button" data-rel="back" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left">Home</a>
             <h1>Arbeit</h1>
@@ -86,7 +71,7 @@
         </ul>
     </div>
 
-    <div data-role="page" id="privat">
+    <div data-role="page" id="list3">
         <header data-role="header">
             <a href="#" data-role="button" data-rel="back" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left">Home</a>
             <h1>Privat</h1>
