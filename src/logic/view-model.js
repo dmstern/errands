@@ -4,7 +4,7 @@ $(document).ready(function () {
         this.id = id;
         this.name = name;
         this.members = members;
-        this.tasks = tasks;
+        this.tasks = ko.observableArray(tasks);
         this.page = "#" + id;
     }
 
@@ -14,9 +14,21 @@ $(document).ready(function () {
     }
 
     var lists = new Array(
-        new List("list1", "Privat", ["Tom", "Jerry"], ["kind abholen", "arzttermin"]),
-        new List("list2", "Arbeit", ["Tom"], ["druckerpatronen", "papier"]),
-        new List("list3", "Haushalt", ["Tom", "Jerry"], ["milch", "brot"])
+        new List("list1", "Privat", ["Tom", "Jerry"], [{
+            name: "kind abholen"
+        }, {
+            name: "arzttermin"
+        }]),
+        new List("list2", "Arbeit", ["Tom"], [{
+            name: "druckerpatronen"
+        }, {
+            name: "papier"
+        }]),
+        new List("list3", "Haushalt", ["Tom", "Jerry"], [{
+            name: "milch"
+        }, {
+            name: "brot"
+        }])
     );
 
     // Activates knockout.js

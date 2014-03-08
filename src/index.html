@@ -23,17 +23,18 @@
         <header data-role="header">
             <h1>Besorgungen</h1>
         </header>
-        <ul data-role="listview" id="lists">
-            <li data-bind="foreach: lists">
+        <ul data-role="listview" id="lists" data-bind="foreach: lists">
+            <li>
                 <a href="#" data-transition="slide" data-bind="text: name, attr: { href: page }"></a>
             </li>
         </ul>
     </div>
 
-    <div data-role="page" id="list1">
+    <!-- ko foreach: lists -->
+    <div data-role="page" data-bind="attr: { id: id } ">
         <header data-role="header">
             <a href="#" data-role="button" data-rel="back" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left">Home</a>
-            <h1>Haushalt</h1>
+            <h1 data-bind="text: name"></h1>
         </header>
         <div class="insert-new-task">
             <form id="formNewTask">
@@ -41,47 +42,14 @@
                 <button id="btnNewTask " data-role="button " type="submit " class="ui-btn ui-btn-inline " style="">OK</button>
             </form>
         </div>
-        <ul data-role="listview" id="listHaushalt">
+        <ul data-role="listview" data-bind="foreach: tasks">
             <li>
-                <a href="">Brot</a>
-            </li>
-            <li>
-                <a href="">Milch</a>
-            </li>
-            <li>
-                <a href="">Fahrrad reparieren</a>
-            </li>
-            <li>
-                <a href="">Zahncreme</a>
+                <a href="" data-bind="text: name"></a>
             </li>
         </ul>
     </div>
-    <div data-role="page" id="list2">
-        <header data-role="header">
-            <a href="#" data-role="button" data-rel="back" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left">Home</a>
-            <h1>Arbeit</h1>
-        </header>
-        <ul data-role="listview">
-            <li>
-                <a href="">Druckerpatronen kaufen</a>
-            </li>
-            <li>
-                <a href="">Post abholen</a>
-            </li>
-        </ul>
-    </div>
+    <!-- /ko -->
 
-    <div data-role="page" id="list3">
-        <header data-role="header">
-            <a href="#" data-role="button" data-rel="back" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left">Home</a>
-            <h1>Privat</h1>
-        </header>
-        <ul data-role="listview">
-            <li>
-                <a href="">Kind abholen</a>
-            </li>
-        </ul>
-    </div>
 </body>
 
 </html>
