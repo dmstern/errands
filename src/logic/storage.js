@@ -26,7 +26,6 @@ $(document).ready(function () {
 
         //        alert(lists[0].tasks[0].name);
         var list = lists[0];
-        //        $('#lists').append("<li class=\"ui-first-child\"><a class=\"ui-btn ui-btn-icon-right ui-icon-carat-r\" href=\"#" + list.id + "\" data-transition=\"slide\">" + list.name + "</a></li>");
     }
 
 });
