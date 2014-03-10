@@ -14,7 +14,7 @@
     <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
     <script src="logic/storage.js"></script>
-    <script src="logic/util.js"></script>
+    <!--    <script src="logic/util.js"></script>-->
     <script src="logic/view-model.js"></script>
 </head>
 
@@ -23,11 +23,17 @@
         <header data-role="header">
             <h1>Besorgungen</h1>
         </header>
-        <ul data-role="listview" id="lists" data-bind="foreach: lists">
-            <li>
-                <a href="#" data-transition="slide" data-bind="text: name, attr: { href: page }"></a>
-            </li>
-        </ul>
+        <div class="insert-new">
+            <form data-bind="submit: addList">
+                <input data-bind='value: newList, valueUpdate: "afterkeydown"' type="text" placeholder="Liste hinzufügen" />
+                <button data-bind="enable: newList().length>0" type="submit" data-role="button" class="ui-btn ui-btn-inline">Hinzufügen</button>
+            </form>
+            <ul data-role="listview" id="lists" data-bind="foreach: lists">
+                <li>
+                    <a href="#" data-transition="slide" data-bind="text: name, attr: { href: page }"></a>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <!-- ko foreach: lists -->
@@ -36,11 +42,13 @@
             <a href="#" data-role="button" data-rel="back" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left">Home</a>
             <h1 data-bind="text: name"></h1>
         </header>
-        <div class="insert-new-task">
-            <form id="formNewTask">
-                <input type="text" placeholder="Task hinzufügen" id="tfNewTask" />
-                <button id="btnNewTask " data-role="button " type="submit " class="ui-btn ui-btn-inline " style="">OK</button>
-            </form>
+        <div class="insert-new">
+            <!--
+            <form data-bind="submit: addTask">
+    <input data-bind='value: newTask, valueUpdate: "afterkeydown"' type="text" placeholder="Task hinzufügen" />
+    <button data-bind="enable: newTask().length > 0" data-role="button" type="submit" class="ui-btn ui-btn-inline">Hinzufügen</button>
+</form>
+-->
         </div>
         <ul data-role="listview" data-bind="foreach: tasks">
             <li>

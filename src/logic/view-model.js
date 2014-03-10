@@ -3,14 +3,29 @@ $(document).ready(function () {
     function List(id, name, members, tasks) {
         this.id = id;
         this.name = name;
-        this.members = members;
+        this.members = ko.observableArray(members);
         this.tasks = ko.observableArray(tasks);
         this.page = "#" + id;
+
+        //        this.newTask = ko.observable("");
+        //        this.addTask = function () {
+        //            if (this.newTask() != "") {
+        //                this.tasks.push(this.newTask());
+        //                this.newTask("");
+        //            }
+        //        }.bind(this);
     }
 
     function ErrandsViewModel(lists) {
         this.lists = ko.observableArray(lists);
 
+        this.newList = ko.observable("");
+        this.addList = function () {
+            if (this.newList() != "") {
+                this.lists.push(this.newList());
+                this.newList("");
+            }
+        }.bind(this);  // Ensure that "this" is always this view model
     }
 
     var lists = new Array(
