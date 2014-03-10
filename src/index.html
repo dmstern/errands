@@ -33,7 +33,7 @@
 
         </div>
         <ul data-role="listview" id="lists" data-bind="foreach: lists">
-            <li>
+            <li data-bind="visible: $root.lists().length > 0">
                 <a href="#" data-transition="slide" data-bind="text: name, attr: { href: page }"></a>
             </li>
         </ul>
