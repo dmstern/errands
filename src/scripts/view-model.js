@@ -22,7 +22,7 @@ $(document).ready(function () {
         this.newListName = ko.observable("");
 
         this.addList = function () {
-            var newList = new List("list1", this.newListName(), ["Tom", "Jerry"], [{}]);
+            var newList = new List(createUID("list"), this.newListName(), ["Tom", "Jerry"], [{}]);
             if (this.newListName() != "") {
                 this.lists.push(newList);
                 this.newListName("");
