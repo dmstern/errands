@@ -25,15 +25,16 @@
         </header>
         <div class="insert-new">
             <form data-bind="submit: addList">
-                <input data-bind='value: newList, valueUpdate: "afterkeydown"' type="text" placeholder="Liste hinzufügen" />
-                <button data-bind="enable: newList().length>0" type="submit" data-role="button" class="ui-btn ui-btn-inline">Hinzufügen</button>
+                <input data-bind='value: newListName, valueUpdate: "afterkeydown"' type="text" placeholder="Liste hinzufügen" />
+                <button data-bind="enable: newListName().length>0" type="submit" data-role="button" class="ui-btn ui-btn-inline">Hinzufügen</button>
             </form>
-            <ul data-role="listview" id="lists" data-bind="foreach: lists">
-                <li>
-                    <a href="#" data-transition="slide" data-bind="text: name, attr: { href: page }"></a>
-                </li>
-            </ul>
+
         </div>
+        <ul data-role="listview" id="lists" data-bind="foreach: lists">
+            <li>
+                <a href="#" data-transition="slide" data-bind="text: name, attr: { href: page }"></a>
+            </li>
+        </ul>
     </div>
 
     <!-- ko foreach: lists -->

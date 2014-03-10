@@ -19,11 +19,13 @@ $(document).ready(function () {
     function ErrandsViewModel(lists) {
         this.lists = ko.observableArray(lists);
 
-        this.newList = ko.observable("");
+        this.newListName = ko.observable("");
+
         this.addList = function () {
-            if (this.newList() != "") {
-                this.lists.push(this.newList());
-                this.newList("");
+            var newList = new List("list1", this.newListName(), ["Tom", "Jerry"], [{}]);
+            if (this.newListName() != "") {
+                this.lists.push(newList);
+                this.newListName("");
             }
         }.bind(this);  // Ensure that "this" is always this view model
     }
