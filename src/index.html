@@ -10,18 +10,19 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.css" />
     <link rel="stylesheet" href="style/style.css" />
     <script src="scripts/storage.js"></script>
-    <!--    <script src="scripts/util.js"></script>-->
     <!-- Reihenfolge der Skripts ist relevant! -->
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
+    <!--    <script src="scripts/util.js"></script>-->
     <script src="scripts/view-model.js"></script>
     <script src="scripts/id-gen.js"></script>
     <script src="scripts/consts.js"></script>
+    <!--    <script src="scripts/storage.js"></script>-->
 </head>
 
-<body>
-    <div data-role="page" id="home" data-theme="a">
+<body id="appView">
+    <div data-role="page" id="home">
         <header data-role="header">
             <h1>Besorgungen</h1>
         </header>
@@ -30,7 +31,6 @@
                 <input data-bind='value: newListName, valueUpdate: "afterkeydown"' type="text" placeholder="Liste hinzufügen" />
                 <button data-bind="enable: newListName().length>0" type="submit" data-role="button" class="ui-btn ui-btn-inline">Hinzufügen</button>
             </form>
-
         </div>
         <ul data-role="listview" id="lists" data-bind="foreach: lists">
             <li data-bind="visible: $root.lists().length > 0">
@@ -51,7 +51,7 @@
                 <button data-bind="enable: newTaskName().length > 0" data-role="button" type="submit" class="ui-btn ui-btn-inline">Hinzufügen</button>
             </form>
         </div>
-        <ul data-role="listview" data-bind="foreach: tasks">
+        <ul data-role="listview" data-bind="foreach: tasks, attr: { id: listviewID }">
             <li>
                 <a href="#" data-bind="text: name"></a>
             </li>

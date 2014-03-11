@@ -6,18 +6,22 @@ $(document).ready(function () {
         this.members = ko.observableArray(members);
         this.tasks = ko.observableArray(tasks);
         this.page = "#" + id;
+        this.listviewID = id + LISTVIEW;
 
         this.newTaskName = ko.observable("");
         this.addTask = function () {
+            var newTaskID = createUID(TASK);
             var newTask = {
+                id: newTaskID,
                 name: this.newTaskName()
             };
             if (this.newTaskName() != "") {
                 this.tasks.push(newTask);
                 this.newTaskName("");
             }
+            // refresh listview to apply JQMobile CSS:
+            $("#" + this.listviewID).listview().listview('refresh');
         }.bind(this);
-
     }
 
     function ErrandsViewModel(lists) {
@@ -36,18 +40,24 @@ $(document).ready(function () {
 
     var lists = new Array(
         new List("list1", "Privat", ["Tom", "Jerry"], [{
+            id: "task1",
             name: "kind abholen"
         }, {
+            id: "task2",
             name: "arzttermin"
         }]),
         new List("list2", "Arbeit", ["Tom"], [{
+            id: "task3",
             name: "druckerpatronen"
         }, {
+            id: "task4",
             name: "papier"
         }]),
         new List("list3", "Haushalt", ["Tom", "Jerry"], [{
+            id: "task5",
             name: "milch"
         }, {
+            id: "task6",
             name: "brot"
         }])
     );
