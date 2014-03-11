@@ -7,13 +7,17 @@ $(document).ready(function () {
         this.tasks = ko.observableArray(tasks);
         this.page = "#" + id;
 
-        //        this.newTask = ko.observable("");
-        //        this.addTask = function () {
-        //            if (this.newTask() != "") {
-        //                this.tasks.push(this.newTask());
-        //                this.newTask("");
-        //            }
-        //        }.bind(this);
+        this.newTaskName = ko.observable("");
+        this.addTask = function () {
+            var newTask = {
+                name: this.newTaskName()
+            };
+            if (this.newTaskName() != "") {
+                this.tasks.push(newTask);
+                this.newTaskName("");
+            }
+        }.bind(this);
+
     }
 
     function ErrandsViewModel(lists) {
