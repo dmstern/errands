@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+	
     function List(id, name, members, tasks) {
         this.id = id;
         this.name = name;
@@ -36,6 +36,19 @@ $(document).ready(function () {
                 this.newListName("");
             }
         }.bind(this);  // Ensure that "this" is always this view model
+        
+        this.store = function() {
+            var data = JSON.stringify(this);
+            console.log("storing: " + data);
+            localStorage['lists'] = data;
+        }
+        
+        this.restore = function() {
+            var data = localStorage['lists'];
+            if (data != undefined) {
+                console.log("restored: " + data);
+            }
+        }
     }
 
     var lists = new Array(
@@ -63,6 +76,7 @@ $(document).ready(function () {
     );
 
     // Activates knockout.js
-    ko.applyBindings(new ErrandsViewModel(lists));
-
+    var viewModel = new ErrandsViewModel(lists);
+    ko.applyBindings(viewModel);
+    
 });

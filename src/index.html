@@ -1,63 +1,72 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Besorgungen-App</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="style/jquery.mobile-1.4.1.min.css" />
-    <link rel="stylesheet" href="style/style.css" />
-    <script src="scripts/storage.js"></script>
-    <!-- Reihenfolge der Skripts ist relevant! -->
-    <script src="scripts/lib/jquery-1.10.2.min.js"></script>
-    <script src="scripts/lib/jquery.mobile-1.4.0.min.js"></script>
-    <script src="scripts/lib/knockout-min.js"></script>
-    <script src="scripts/util.js"></script>
-    <script src="scripts/view-model.js"></script>
-    <script src="scripts/consts.js"></script>
-    <!--    <script src="scripts/storage.js"></script>-->
-</head>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Besorgungen-App</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="style/jquery.mobile-1.4.1.min.css" />
+		<link rel="stylesheet" href="style/style.css" />
+		<script src="scripts/storage.js"></script>
+		<!-- Reihenfolge der Skripts ist relevant! -->
+		<script src="scripts/lib/jquery-1.10.2.min.js"></script>
+		<script src="scripts/lib/jquery.mobile-1.4.0.min.js"></script>
+		<script src="scripts/lib/knockout-min.js"></script>
+		<script src="scripts/util.js"></script>
+		<script src="scripts/view-model.js"></script>
+		<script src="scripts/consts.js"></script>
+		<!-- <script src="scripts/storage.js"></script> -->
+	</head>
 
-<body id="appView">
-    <div data-role="page" id="home">
-        <header data-role="header">
-            <h1>Besorgungen</h1>
-        </header>
-        <div class="insert-new">
-            <form data-bind="submit: addList">
-                <input data-bind='value: newListName, valueUpdate: "afterkeydown"' type="text" placeholder="Liste hinzufügen" />
-                <button data-bind="enable: newListName().length>0" type="submit" data-role="button" class="ui-btn ui-btn-inline">Hinzufügen</button>
-            </form>
-        </div>
-        <ul data-role="listview" id="lists" data-bind="foreach: lists">
-            <li data-bind="visible: $root.lists().length > 0">
-                <a href="#" data-transition="slide" data-bind="text: name, attr: { href: page }"></a>
-            </li>
-        </ul>
-    </div>
+	<body id="appView">
+		<div data-role="page" id="home">
+			<header data-role="header">
+				<h1>Besorgungen</h1>
+			</header>
+			<div class="insert-new">
+				<form data-bind="submit: addList">
+					<input data-bind='value: newListName, valueUpdate: "afterkeydown"' type="text" placeholder="Liste hinzufügen" />
+					<button data-bind="enable: newListName().length>0" type="submit" data-role="button" class="ui-btn ui-btn-inline">
+						Hinzufügen
+					</button>
+				</form>
+			</div>
+			<ul data-role="listview" id="lists" data-bind="foreach: lists">
+				<li data-bind="visible: $root.lists().length > 0">
+					<a href="#" data-transition="slide" data-bind="text: name, attr: { href: page }"></a>
+				</li>
+			</ul>
+			<br />
+			<footer data-role="footer">
+				<button data-bind="click: store" class="ui-btn ui-btn-inline">Save</button>
+				<button data-bind="click: restore" class="ui-btn ui-btn-inline">Restore</button>
+			</footer>
+		</div>
 
-    <!-- ko foreach: lists -->
-    <div data-role="page" data-bind="attr: { id: id } ">
-        <header data-role="header">
-            <a href="#home" data-role="button" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left">Home</a>
-            <h1 data-bind="text: name"></h1>
-        </header>
-        <div class="insert-new">
-            <form data-bind="submit: addTask">
-                <input data-bind='value: newTaskName, valueUpdate: "afterkeydown"' type="text" placeholder="Task hinzufügen" />
-                <button data-bind="enable: newTaskName().length > 0" data-role="button" type="submit" class="ui-btn ui-btn-inline">Hinzufügen</button>
-            </form>
-        </div>
-        <ul data-role="listview" data-bind="foreach: tasks, attr: { id: listviewID }">
-            <li>
-                <a href="#" data-bind="text: name"></a>
-            </li>
-        </ul>
-    </div>
-    <!-- /ko -->
+		<!-- ko foreach: lists -->
+		<div data-role="page" data-bind="attr: { id: id } ">
+			<header data-role="header">
+				<a href="#home" data-role="button" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left">Home</a>
+				<h1 data-bind="text: name"></h1>
+			</header>
+			<div class="insert-new">
+				<form data-bind="submit: addTask">
+					<input data-bind='value: newTaskName, valueUpdate: "afterkeydown"' type="text" placeholder="Task hinzufügen" />
+					<button data-bind="enable: newTaskName().length > 0" data-role="button" type="submit" class="ui-btn ui-btn-inline">
+						Hinzufügen
+					</button>
+				</form>
+			</div>
+			<ul data-role="listview" data-bind="foreach: tasks, attr: { id: listviewID }">
+				<li>
+					<a href="#" data-bind="text: name"></a>
+				</li>
+			</ul>
+		</div>
+		<!-- /ko -->
 
-</body>
+	</body>
 
 </html>
