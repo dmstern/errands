@@ -1,6 +1,21 @@
+# OSX
+.DS_Store
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Sicherheitskopien:
 *~
+*.bak
+
+# Eclipse:
 .project
 
+# Von Cordova generierte Ordner ignorieren:
 # Nach Empfehlung aus: https://gist.github.com/dixonj16/7043297
 platforms/
 plugins/
