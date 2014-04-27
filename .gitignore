@@ -1,2 +1,6 @@
 *~
 .project
+
+# Nach Empfehlung aus: https://gist.github.com/dixonj16/7043297
+platforms/
+plugins/
