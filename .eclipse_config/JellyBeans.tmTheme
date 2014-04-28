@@ -27,6 +27,17 @@
     </dict>
     <dict>
       <key>name</key>
+      <string>invisibles</string>
+      <key>scope</key>
+      <string>invisibles</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#404040ff</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
       <string>-Common-</string>
       <key>scope</key>
       <string>dont.match</string>
@@ -139,9 +150,9 @@
       <key>settings</key>
       <dict>
         <key>foreground</key>
-        <string>#f8f8f8ff</string>
+        <string>#131213ff</string>
         <key>background</key>
-        <string>#67ae26ff</string>
+        <string>#b2e632ff</string>
       </dict>
     </dict>
     <dict>
@@ -164,6 +175,8 @@
       <string>markup.underline</string>
       <key>settings</key>
       <dict>
+        <key>foreground</key>
+        <string>#0e0e0eff</string>
         <key>fontStyle</key>
         <string>underline</string>
       </dict>
@@ -175,6 +188,8 @@
       <string>markup.bold</string>
       <key>settings</key>
       <dict>
+        <key>foreground</key>
+        <string>#0e0e0eff</string>
         <key>fontStyle</key>
         <string>bold</string>
       </dict>
@@ -186,6 +201,8 @@
       <string>markup.italic</string>
       <key>settings</key>
       <dict>
+        <key>foreground</key>
+        <string>#0e0e0eff</string>
         <key>fontStyle</key>
         <string>italic</string>
       </dict>
@@ -251,17 +268,6 @@
       <string>dont.match</string>
       <key>settings</key>
       <dict>
-      </dict>
-    </dict>
-    <dict>
-      <key>name</key>
-      <string>invisibles</string>
-      <key>scope</key>
-      <string>invisibles</string>
-      <key>settings</key>
-      <dict>
-        <key>foreground</key>
-        <string>#404040ff</string>
       </dict>
     </dict>
     <dict>
@@ -532,9 +538,9 @@
       <key>settings</key>
       <dict>
         <key>foreground</key>
-        <string>#d4ffd4ff</string>
+        <string>#0e0e0eff</string>
         <key>background</key>
-        <string>#7ebe15ff</string>
+        <string>#ffffffff</string>
       </dict>
     </dict>
     <dict>
