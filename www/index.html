@@ -8,6 +8,7 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.1.min.css" />
+		<link rel="stylesheet" href="css/index.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<script src="js/storage.js"></script>
 		<!-- Reihenfolge der Skripts ist relevant! -->
@@ -17,6 +18,7 @@
 		<script src="js/util.js"></script>
 		<script src="js/view-model.js"></script>
 		<script src="js/consts.js"></script>
+		<script src="js/index.js"></script>
 		<!-- <script src="js/storage.js"></script> -->
 	</head>
 
@@ -28,9 +30,7 @@
 			<div class="insert-new">
 				<form data-bind="submit: addList">
 					<input data-bind='value: newListName, valueUpdate: "afterkeydown"' type="text" placeholder="Liste hinzufügen" />
-					<button data-bind="enable: newListName().length>0" type="submit" data-role="button" class="ui-btn ui-btn-inline">
-						Hinzufügen
-					</button>
+					<button data-bind="enable: newListName().length>0" type="submit" data-role="button" class="ui-btn ui-btn-inline"> Hinzufügen </button>
 				</form>
 			</div>
 			<ul data-role="listview" id="lists" data-bind="foreach: lists">
@@ -54,9 +54,7 @@
 			<div class="insert-new">
 				<form data-bind="submit: addTask">
 					<input data-bind='value: newTaskName, valueUpdate: "afterkeydown"' type="text" placeholder="Task hinzufügen" />
-					<button data-bind="enable: newTaskName().length > 0" data-role="button" type="submit" class="ui-btn ui-btn-inline">
-						Hinzufügen
-					</button>
+					<button data-bind="enable: newTaskName().length > 0" data-role="button" type="submit" class="ui-btn ui-btn-inline"> Hinzufügen </button>
 				</form>
 			</div>
 			<ul data-role="listview" data-bind="foreach: tasks, attr: { id: listviewID }">
