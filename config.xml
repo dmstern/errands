@@ -3,12 +3,14 @@
     <name>Errands</name>
 
     <description>
-        A simple cross platform ToDo app e.g. for localized tasks.
+        A simple cross-platform ToDo app e.g. for localized tasks.
     </description>
 
-    <author href="https://build.phonegap.com" email="support@phonegap.com">
+    <author href="http://cordova.apache.org" email="morgenstern.daniel@gmail.com">
         Daniel Morgenstern
     </author>
     <content src="index.html" />
     <access origin="*" />
+    
+    <preference name="Fullscreen" value="true" />
 </widget>
