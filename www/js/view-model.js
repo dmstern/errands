@@ -35,7 +35,7 @@ $(document).ready(function () {
                 this.lists.push(newList);
                 this.newListName("");
             }
-        }.bind(this);  // Ensure that "this" is always this view model
+        }.bind(this);  // Ensure that "this" is always this view model
         
         this.store = function() {
             var data = JSON.stringify(this);
