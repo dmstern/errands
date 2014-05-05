@@ -19,7 +19,8 @@
 # Von Cordova generierte Ordner ignorieren:
 # Nach Empfehlung aus: https://gist.github.com/dixonj16/7043297
 platforms/
-plugins/
+# Plugins evtl. doch lieber mit Committen, damit auf anderen Systemen gleich verfügbar
+#plugins/
 
 # exclude node_nodules directory // keine ahnung, ob der hier wirklich rein gehört. kam nach installation und ausführung von weinre.
 node_modules
