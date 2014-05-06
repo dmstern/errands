@@ -1,6 +1,11 @@
-$(document).ready(function () {
-	
+
+	/***************************************************************************
+	 * List Object
+	 **************************************************************************/
     function List(id, name, members, tasks) {
+    	/*
+		 * Properties =======================================================
+		 */
         this.id = id;
         this.name = name;
         this.members = ko.observableArray(members);
@@ -8,22 +13,38 @@ $(document).ready(function () {
         this.page = "#" + id;
         this.listviewID = id + LISTVIEW;
 
+        /*
+		 * List Operations ===================================================
+		 */
+        // New Task:
         this.newTaskName = ko.observable("");
         this.addTask = function () {
             var newTaskID = createUID(TASK);
+            
             var newTask = {
                 id: newTaskID,
                 name: this.newTaskName()
             };
+            
             if (this.newTaskName() != "") {
                 this.tasks.push(newTask);
                 this.newTaskName("");
             }
+                        
             // refresh listview to apply JQMobile CSS:
             $("#" + this.listviewID).listview().listview('refresh');
+            
         }.bind(this);
+        
+        // Share List:
+        this.share = function () {
+        	console.log("shareList: " + this.name );
+        }
     }
 
+    /***************************************************************************
+	 * ViewModel for Lists and Tasks:
+	 **************************************************************************/
     function ErrandsViewModel(lists) {
         this.lists = ko.observableArray(lists);
 
@@ -51,6 +72,9 @@ $(document).ready(function () {
         }
     }
 
+    /***************************************************************************
+	 * Initial Test-Data:
+	 **************************************************************************/
     var lists = new Array(
         new List("list1", "Privat", ["Tom", "Jerry"], [{
             id: "task1",
@@ -75,8 +99,9 @@ $(document).ready(function () {
         }])
     );
 
-    // Activates knockout.js
+    /***************************************************************************
+	 * Activates knockout.js
+	 **************************************************************************/
     var viewModel = new ErrandsViewModel(lists);
     ko.applyBindings(viewModel);
     
-});

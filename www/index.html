@@ -27,7 +27,7 @@ under the License.
 		<link rel="stylesheet" href="css/index.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<script type="text/javascript" src="cordova.js"></script>
-		<!-- Reihenfolge der Skripts ist relevant! -->
+		<!-- Reihenfolge der Scripts ist relevant! -->
 		<script src="lib/jquery-1.10.2.min.js"></script>
 		<script src="lib/jquery.mobile-1.4.0.min.js"></script>
 		<script src="lib/knockout-min.js"></script>
@@ -35,57 +35,68 @@ under the License.
 		<title>Besorgungen</title>
 	</head>
 	<body>
-		<!-- <div class="app"> -->
-		<!--
-		<h1>1>Apache Cordova</h1>
-		<div id="deviceready" class="blink">
-		<p class="event listening">Connecting to Device</p>
-		<p class="event received">Device is Ready</p>
-		</ div>
-		-->
+		<!-- MAIN PAGE: LISTS ---------------------------->
 		<div data-role="page" id="home">
 			<header data-role="header">
 				<h1>Besorgungen</h1>
 			</header>
-			<div class="insert-new">
-				<form data-bind="submit: addList">
-					<input data-bind='value: newListName, valueUpdate: "afterkeydown"' type="text" placeholder="Liste hinzufügen" />
-					<button data-bind="enable: newListName().length>0" type="submit" data-role="button" class="ui-btn ui-btn-inline"> Hinzufügen </button>
-				</form>
+			<div data-role="main" class="ui-content">
+				<div class="insert-new">
+					<form data-bind="submit: addList">
+						<input data-bind='value: newListName, valueUpdate: "afterkeydown"' type="text" placeholder="Liste hinzufügen" />
+						<button data-bind="enable: newListName().length>0" type="submit" data-role="button" class="ui-btn ui-btn-inline">
+							Hinzufügen
+						</button>
+					</form>
+				</div>
+				<ul data-role="listview" id="lists" data-bind="foreach: lists">
+					<li data-bind="visible: $root.lists().length > 0">
+						<a href="#" data-transition="slide" data-bind="text: name, attr: { href: page }"></a>
+					</li>
+				</ul>
+				<br />
 			</div>
-			<ul data-role="listview" id="lists" data-bind="foreach: lists">
-				<li data-bind="visible: $root.lists().length > 0">
-					<a href="#" data-transition="slide" data-bind="text: name, attr: { href: page }"></a>
-				</li>
-			</ul>
-			<br />
-			<footer data-role="footer">
-				<button data-bind="click: store" class="ui-btn ui-btn-inline">Save</button>
-				<button data-bind="click: restore" class="ui-btn ui-btn-inline">Restore</button>
+			<footer data-role="footer" data-position="fixed">
+				<button data-bind="click: store" class="ui-btn ui-btn-inline">
+					Save
+				</button>
+				<button data-bind="click: restore" class="ui-btn ui-btn-inline">
+					Restore
+				</button>
 			</footer>
 		</div>
 
+		<!-- SUBPAGE: TASKS ------------------------------>
 		<!-- ko foreach: lists -->
 		<div data-role="page" data-bind="attr: { id: id } ">
 			<header data-role="header">
 				<a href="#home" data-role="button" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left">Home</a>
 				<h1 data-bind="text: name"></h1>
 			</header>
-			<div class="insert-new">
-				<form data-bind="submit: addTask">
-					<input data-bind='value: newTaskName, valueUpdate: "afterkeydown"' type="text" placeholder="Task hinzufügen" />
-					<button data-bind="enable: newTaskName().length > 0" data-role="button" type="submit" class="ui-btn ui-btn-inline"> Hinzufügen </button>
-				</form>
+			<div data-role="main" class="ui-content">
+				<div class="insert-new">
+					<form data-bind="submit: addTask">
+						<input data-bind='value: newTaskName, valueUpdate: "afterkeydown"' type="text" placeholder="Task hinzufügen" />
+						<button data-bind="enable: newTaskName().length > 0" data-role="button" type="submit" class="ui-btn ui-btn-inline">
+							Hinzufügen
+						</button>
+					</form>
+				</div>
+				<ul data-role="listview" data-bind="foreach: tasks, attr: { id: listviewID }">
+					<li>
+						<a href="#" data-bind="text: name"></a>
+					</li>
+				</ul>
 			</div>
-			<ul data-role="listview" data-bind="foreach: tasks, attr: { id: listviewID }">
-				<li>
-					<a href="#" data-bind="text: name"></a>
-				</li>
-			</ul>
+			<footer data-role="footer" data-position="fixed">
+				<button class="ui-btn ui-icon-user ui-btn-icon-left" data-bind="click: share">
+					Liste Teilen
+				</button>
+			</footer>
 		</div>
 		<!-- /ko -->
 
-		<!-- </div> -->
+		<!-- APP SCRIPTS --------------------------------->
 		<script src="js/storage.js"></script>
 		<script src="js/consts.js"></script>
 		<script src="js/util.js"></script>

@@ -27,6 +27,7 @@ var app = {
 	// 'load', 'deviceready', 'offline', and 'online'.
 	bindEvents : function() {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
+//		$('#shareListButton').bind('click', this.shareList);
 	},
 	// deviceready Event Handler
 	//
@@ -37,20 +38,24 @@ var app = {
 	},
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
-		function onSuccess(contacts) {
-			alert('Found ' + contacts.length + ' contacts.');
-		};
 
-		function onError(contactError) {
-			alert('onError!');
-		};
-
-		// find all contacts with 'Bob' in any name field
-		var options = new ContactFindOptions();
-		options.filter = "Test";
-		options.multiple = true;
-		var fields = ["displayName", "name"];
-		navigator.contacts.find(fields, onSuccess, onError, options);
-		
-	}
+// Contacts Test:
+	// function onSuccess(contacts) {
+	// alert('Found ' + contacts.length + ' contacts.');
+	// };
+	//
+	// function onError(contactError) {
+	// alert('onError!');
+	// };
+	//
+	// // find all contacts with 'Bob' in any name field
+	// var options = new ContactFindOptions();
+	// options.filter = "Test";
+	// options.multiple = true;
+	// var fields = ["displayName", "name"];
+	// navigator.contacts.find(fields, onSuccess, onError, options);
+		var deviceReadyMsg = "Device is ready.";
+		console.log(deviceReadyMsg);
+	},
+	
 };
