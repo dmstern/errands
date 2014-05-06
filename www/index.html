@@ -44,12 +44,13 @@ under the License.
 				<div class="insert-new">
 					<form data-bind="submit: addList">
 						<input data-bind='value: newListName, valueUpdate: "afterkeydown"' type="text" placeholder="Liste hinzufügen" />
-						<button data-bind="enable: newListName().length>0" type="submit" data-role="button" class="ui-btn ui-btn-inline">
+						<button data-bind="enable: newListName().length>0" type="submit" class="ui-btn ui-corner-all ui-btn-inline ui-shadow">
 							Hinzufügen
 						</button>
 					</form>
 				</div>
-				<ul data-role="listview" id="lists" data-bind="foreach: lists">
+				<br />
+				<ul data-role="listview" id="lists" data-bind="foreach: lists, jqmRefreshList: lists">
 					<li data-bind="visible: $root.lists().length > 0">
 						<a href="#" data-transition="slide" data-bind="text: name, attr: { href: page }"></a>
 					</li>
@@ -82,7 +83,8 @@ under the License.
 						</button>
 					</form>
 				</div>
-				<ul data-role="listview" data-bind="foreach: tasks, attr: { id: listviewID }">
+				<br />
+				<ul data-role="listview" data-bind="foreach: tasks, attr: { id: listviewID }, jqmRefreshList: tasks">
 					<li>
 						<a href="#" data-bind="text: name"></a>
 					</li>
