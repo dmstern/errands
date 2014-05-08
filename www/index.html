@@ -23,15 +23,16 @@ under the License.
 		<meta name="format-detection" content="telephone=no" />
 		<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
-		<link rel="stylesheet" href="lib/jquery.mobile-1.4.1.min.css" />
+		<link rel="stylesheet" href="lib/jquery.mobile/1.4.2/jquery.mobile-1.4.2.css" />
 		<link rel="stylesheet" href="css/index.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<script type="text/javascript" src="cordova.js"></script>
 		<!-- Reihenfolge der Scripts ist relevant! -->
-		<script src="lib/jquery-1.10.2.min.js"></script>
-		<script src="lib/jquery.mobile-1.4.0.min.js"></script>
-		<script src="lib/knockout-min.js"></script>
-		<script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>
+		<!-- <script src="lib/jquery-1.10.2.min.js"></script> -->
+		<script src="lib/jquery/jquery-2.1.1.min.js"></script>
+		<script src="lib/jquery.mobile/1.4.2/jquery.mobile-1.4.2.js"></script>
+		<script src="lib/knockout/knockout-3.1.0.debug.js"></script>
+		<!-- <script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>Weinre Debugger -->
 		<title>Besorgungen</title>
 	</head>
 	<body>
@@ -84,9 +85,12 @@ under the License.
 					</form>
 				</div>
 				<br />
-				<fieldset data-role="controlgroup" data-bind="foreach: tasks, attr: { id: listviewID }, jqmRefreshList: tasks">
-					<label data-bind="attr: { for: id }, text: name"></label>
-					<input type="checkbox" name="task" data-bind="value: id, attr: { id: id }">
+				<fieldset data-role="controlgroup">
+					<!-- Aus grafischen Gründen das Binding hier statt im Fieldset. -->
+					<div data-bind="foreach: tasks, jqmRefreshList: tasks">
+						<label data-bind="attr: { for: id }, text: name"></label>
+						<input type="checkbox" name="task" data-bind="value: id, attr: { id: id }, checked: done">
+					</div>
 				</fieldset>
 			</div>
 			<div data-role="panel" id="contactsPanel" data-position="right" data-display="overlay" data-dismissible="true" data-theme="b" class="overlayPanel">
@@ -104,11 +108,11 @@ under the License.
 		<!-- /ko -->
 
 		<!-- APP SCRIPTS --------------------------------->
+		<script src="js/style.js"></script>
 		<script src="js/storage.js"></script>
 		<script src="js/consts.js"></script>
 		<script src="js/util.js"></script>
 		<script src="js/viewModel.js"></script>
-		<script src="js/style.js"></script>
 		<script src="js/index.js"></script>
 		<script type="text/javascript">
 			app.initialize();
