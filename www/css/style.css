@@ -3,3 +3,7 @@
     width: 100%;
     text-align: right;
 }
+.task-done {
+	text-decoration: line-through;
+	color: gray; /*Funktioniert noch nicht!*/
+}

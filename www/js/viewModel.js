@@ -102,9 +102,9 @@ function Task(id, name, done) {
 	/*
 	 * Operations
 	 */
-	this.check = function() {
-		alert("done.");
-	}
+	this.doneState = ko.computed(function() {
+		return this.done() ? "task-done" : "task-open";
+	}, this);
 
 }
 

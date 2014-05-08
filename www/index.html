@@ -29,7 +29,7 @@ under the License.
 		<script type="text/javascript" src="cordova.js"></script>
 		<!-- Reihenfolge der Scripts ist relevant! -->
 		<!-- <script src="lib/jquery-1.10.2.min.js"></script> -->
-		<script src="lib/jquery/jquery-2.1.1.min.js"></script>
+		<script src="lib/jquery/jquery-2.1.1.min.js"></script><!-- Kein Support für IE < 9 TODO: Kompatibilität mit WebViews checken! -->
 		<script src="lib/jquery.mobile/1.4.2/jquery.mobile-1.4.2.js"></script>
 		<script src="lib/knockout/knockout-3.1.0.debug.js"></script>
 		<!-- <script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>Weinre Debugger -->
@@ -88,7 +88,7 @@ under the License.
 				<fieldset data-role="controlgroup">
 					<!-- Aus grafischen Gründen das Binding hier statt im Fieldset. -->
 					<div data-bind="foreach: tasks, jqmRefreshList: tasks">
-						<label data-bind="attr: { for: id }, text: name"></label>
+						<label data-bind="attr: { for: id }, css: doneState, text: name"></label>
 						<input type="checkbox" name="task" data-bind="value: id, attr: { id: id }, checked: done">
 					</div>
 				</fieldset>
