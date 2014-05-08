@@ -10,7 +10,8 @@ ko.bindingHandlers.jqmRefreshList = {
 		$(element).listview().listview("refresh");
 
 		// Refresh CheckboxFieldset after update
-		$("[data-role=controlgroup]").enhanceWithin().controlgroup().controlgroup("refresh");
+		$("[data-role=controlgroup]").enhanceWithin().controlgroup()
+				.controlgroup("refresh");
 
 		// Apply dynamic style classes:
 		applyStyles();
@@ -88,11 +89,9 @@ function List(id, name, members, tasks) {
 }
 
 /*******************************************************************************
- * Tasks Object
+ * Tasks Object TODO Weitere Attribute hinzufügen
  ******************************************************************************/
-function Task(id, name, done) { /*
-								 * TODO Weitere Attribute hinzufügen
-								 */
+function Task(id, name, done) {
 	/*
 	 * Properties
 	 */
