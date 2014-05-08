@@ -44,7 +44,7 @@ under the License.
 				<div class="insert-new">
 					<form data-bind="submit: addList">
 						<input data-bind='value: newListName, valueUpdate: "afterkeydown"' type="text" placeholder="Liste hinzufügen" />
-						<button data-bind="enable: newListName().length>0" type="submit" class="ui-btn ui-corner-all ui-btn-inline ui-shadow">
+						<button data-bind="enable: newListName().length>0" type="submit" class="addButton">
 							Hinzufügen
 						</button>
 					</form>
@@ -78,22 +78,27 @@ under the License.
 				<div class="insert-new">
 					<form data-bind="submit: addTask">
 						<input data-bind='value: newTaskName, valueUpdate: "afterkeydown"' type="text" placeholder="Task hinzufügen" />
-						<button data-bind="enable: newTaskName().length > 0" data-role="button" type="submit" class="ui-btn ui-btn-inline">
+						<button data-bind="enable: newTaskName().length > 0" data-role="button" type="submit" class="addButton">
 							Hinzufügen
 						</button>
 					</form>
 				</div>
 				<br />
-				<ul data-role="listview" data-bind="foreach: tasks, attr: { id: listviewID }, jqmRefreshList: tasks">
-					<li>
-						<a href="#" data-bind="text: name"></a>
-					</li>
-				</ul>
+				<fieldset data-role="controlgroup" data-bind="foreach: tasks, attr: { id: listviewID }, jqmRefreshList: tasks">
+					<label data-bind="attr: { for: id }, text: name"></label>
+					<input type="checkbox" name="task" data-bind="value: id, attr: { id: id }">
+				</fieldset>
+			</div>
+			<div data-role="panel" id="contactsPanel" data-position="right" data-display="overlay" data-dismissible="true" data-theme="b" class="overlayPanel">
+				<div class="ui-panel-inner">
+					<div class="panel-content">
+						<!-- TODO Contacts Chooser einbauen. -->
+						<a href="#" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true" class="closeButton" role="button">Close panel</a>
+					</div>
+				</div><!-- /content wrapper for padding -->
 			</div>
 			<footer data-role="footer" data-position="fixed">
-				<button class="ui-btn ui-icon-user ui-btn-icon-left" data-bind="click: share">
-					Liste Teilen
-				</button>
+				<a href="#contactsPanel" data-role="button" class="ui-btn ui-icon-user ui-btn-icon-left" data-bind="click: share"> Liste Teilen </a>
 			</footer>
 		</div>
 		<!-- /ko -->
@@ -103,6 +108,7 @@ under the License.
 		<script src="js/consts.js"></script>
 		<script src="js/util.js"></script>
 		<script src="js/viewModel.js"></script>
+		<script src="js/style.js"></script>
 		<script src="js/index.js"></script>
 		<script type="text/javascript">
 			app.initialize();
