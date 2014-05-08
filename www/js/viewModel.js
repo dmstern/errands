@@ -1,13 +1,54 @@
 /*******************************************************************************
- * Trigger for re-apply QJM Styles after adding items
+ * Trigger for re-apply QJM-Styles after adding items
  ******************************************************************************/
 ko.bindingHandlers.jqmRefreshList = {
 	update : function(element, valueAccessor) {
 		// just to create a dependency:
-		ko.utils.unwrapObservable(valueAccessor()); 
+		ko.utils.unwrapObservable(valueAccessor());
+
+		// Refresh Listview after update:
 		$(element).listview().listview("refresh");
+
+		// Refresh CheckboxFieldset after update
+		$("[data-role=controlgroup]").enhanceWithin().controlgroup().controlgroup("refresh");
+
+		// Apply dynamic style classes:
+		applyStyles();
 	}
 };
+
+/*******************************************************************************
+ * ViewModel for Lists and Tasks:
+ ******************************************************************************/
+function ErrandsViewModel(lists) {
+	this.lists = ko.observableArray(lists);
+
+	this.newListName = ko.observable("");
+
+	this.addList = function() {
+		var newListID = createUID(LIST);
+
+		var newList = new List(newListID, this.newListName(), [], []);
+		if (this.newListName() != "") {
+			this.lists.push(newList);
+			this.newListName("");
+		}
+		// Ensure that "this" is always this view model:
+	}.bind(this);
+
+	this.store = function() {
+		var data = JSON.stringify(this);
+		console.log("storing: " + data);
+		localStorage['lists'] = data;
+	}
+
+	this.restore = function() {
+		var data = localStorage['lists'];
+		if (data != undefined) {
+			console.log("restored: " + data);
+		}
+	}
+}
 
 /*******************************************************************************
  * List Object
@@ -31,10 +72,7 @@ function List(id, name, members, tasks) {
 	this.addTask = function() {
 		var newTaskID = createUID(TASK);
 
-		var newTask = {
-			id : newTaskID,
-			name : this.newTaskName()
-		};
+		var newTask = new Task(newTaskID, this.newTaskName(), false);
 
 		if (this.newTaskName() != "") {
 			this.tasks.push(newTask);
@@ -50,59 +88,37 @@ function List(id, name, members, tasks) {
 }
 
 /*******************************************************************************
- * ViewModel for Lists and Tasks:
+ * Tasks Object
  ******************************************************************************/
-function ErrandsViewModel(lists) {
-	this.lists = ko.observableArray(lists);
+function Task(id, name, done) { /*
+								 * TODO Weitere Attribute hinzufügen
+								 */
+	/*
+	 * Properties
+	 */
+	this.id = id;
+	this.name = ko.observable(name);
+	this.done = ko.observable(done);
 
-	this.newListName = ko.observable("");
-
-	this.addList = function() {
-		var newListID = createUID(LIST);
-
-		var newList = new List(newListID, this.newListName(), [], []);
-		if (this.newListName() != "") {
-			this.lists.push(newList);
-			this.newListName("");
-		}
-	}.bind(this); // Ensure that "this" is always this view model
-
-	this.store = function() {
-		var data = JSON.stringify(this);
-		console.log("storing: " + data);
-		localStorage['lists'] = data;
+	/*
+	 * Operations
+	 */
+	this.check = function() {
+		alert("done.");
 	}
 
-	this.restore = function() {
-		var data = localStorage['lists'];
-		if (data != undefined) {
-			console.log("restored: " + data);
-		}
-	}
 }
 
 /*******************************************************************************
  * Initial Test-Data:
  ******************************************************************************/
-var lists = new Array(new List("list1", "Privat", [ "Tom", "Jerry" ], [ {
-	id : "task1",
-	name : "kind abholen"
-}, {
-	id : "task2",
-	name : "arzttermin"
-} ]), new List("list2", "Arbeit", [ "Tom" ], [ {
-	id : "task3",
-	name : "druckerpatronen"
-}, {
-	id : "task4",
-	name : "papier"
-} ]), new List("list3", "Haushalt", [ "Tom", "Jerry" ], [ {
-	id : "task5",
-	name : "milch"
-}, {
-	id : "task6",
-	name : "brot"
-} ]));
+var lists = new Array(new List("list1", "Privat", [ "Tom", "Jerry" ], [
+		new Task("task1", "Kind abholen", false),
+		new Task("task2", "Arzttermin", false) ]), new List("list2", "Arbeit",
+		[ "Tom" ], [ new Task("task3", "Druckerpatronen", false),
+				new Task("task4", "Papier", false) ]), new List("list3",
+		"Haushalt", [ "Tom", "Jerry" ], [ new Task("task5", "Milch", false),
+				new Task("task6", "Brot", false) ]));
 
 /*******************************************************************************
  * Activates knockout.js
