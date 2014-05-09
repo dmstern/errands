@@ -19,7 +19,7 @@ ko.bindingHandlers.jqmRefreshList = {
 };
 
 /*******************************************************************************
- * ViewModel for Lists and Tasks:
+ * Main ViewModel:
  ******************************************************************************/
 function ErrandsViewModel(lists) {
 	this.lists = ko.observableArray(lists);
@@ -102,9 +102,6 @@ function Task(id, name, done) {
 	/*
 	 * Operations
 	 */
-	this.doneState = ko.computed(function() {
-		return this.done() ? "task-done" : "task-open";
-	}, this);
 
 }
 

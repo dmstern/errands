@@ -86,9 +86,8 @@ under the License.
 				</div>
 				<br />
 				<fieldset data-role="controlgroup">
-					<!-- Aus grafischen Gründen das Binding hier statt im Fieldset. -->
 					<div data-bind="foreach: tasks, jqmRefreshList: tasks">
-						<label data-bind="attr: { for: id }, css: doneState, text: name"></label>
+						<label data-bind="attr: { for: id }, style: { textDecoration: done() ? 'line-through' : 'none', color: done() ? 'gray' : 'inherit' }, text: name"></label>
 						<input type="checkbox" name="task" data-bind="value: id, attr: { id: id }, checked: done">
 					</div>
 				</fieldset>
