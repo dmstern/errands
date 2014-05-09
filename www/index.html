@@ -45,7 +45,7 @@ under the License.
 				<div class="insert-new">
 					<form data-bind="submit: addList">
 						<input data-bind='value: newListName, valueUpdate: "afterkeydown"' type="text" placeholder="Liste hinzufügen" />
-						<button data-bind="enable: newListName().length>0" type="submit" class="addButton">
+						<button data-bind="enable: newListName().length>0" type="submit" class="add-button">
 							Neue Liste
 						</button>
 					</form>
@@ -79,7 +79,7 @@ under the License.
 				<div class="insert-new">
 					<form data-bind="submit: addTask">
 						<input data-bind='value: newTaskName, valueUpdate: "afterkeydown"' type="text" placeholder="Task hinzufügen" />
-						<button data-bind="enable: newTaskName().length > 0" data-role="button" type="submit" class="addButton">
+						<button data-bind="enable: newTaskName().length > 0" data-role="button" type="submit" class="add-button">
 							Task Hinzufügen
 						</button>
 					</form>
@@ -96,7 +96,7 @@ under the License.
 				<div class="ui-panel-inner">
 					<div class="panel-content">
 						<!-- TODO Contacts Chooser einbauen. -->
-						<a href="#" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true" class="closeButton" role="button">Close panel</a>
+						<a href="#" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true" class="close-button" role="button">Close panel</a>
 					</div>
 				</div><!-- /content wrapper for padding -->
 			</div>

@@ -66,7 +66,7 @@ function List(id, name, members, tasks) {
 	this.listviewID = id + LISTVIEW;
 
 	/*
-	 * List Operations ===================================================
+	 * Operations ===================================================
 	 */
 	// Add New Task:
 	this.newTaskName = ko.observable("");
