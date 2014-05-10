@@ -16,47 +16,85 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app = {
-	// Application Constructor
-	initialize : function() {
-		this.bindEvents();
-		applyStyles();
-	},
-	// Bind Event Listeners
-	//
-	// Bind any events that are required on startup. Common events are:
-	// 'load', 'deviceready', 'offline', and 'online'.
-	bindEvents : function() {
-		document.addEventListener('deviceready', this.onDeviceReady, false);
-//		$('#shareListButton').bind('click', this.shareList);
-	},
-	// deviceready Event Handler
-	//
-	// The scope of 'this' is the event. In order to call the 'receivedEvent'
-	// function, we must explicitly call 'app.receivedEvent(...);'
-	onDeviceReady : function() {
-		app.receivedEvent('deviceready');
-	},
-	// Update DOM on a Received Event
-	receivedEvent : function(id) {
 
-// Contacts Test:
-	// function onSuccess(contacts) {
-	// alert('Found ' + contacts.length + ' contacts.');
-	// };
-	//
-	// function onError(contactError) {
-	// alert('onError!');
-	// };
-	//
-	// // find all contacts with 'Bob' in any name field
-	// var options = new ContactFindOptions();
-	// options.filter = "Test";
-	// options.multiple = true;
-	// var fields = ["displayName", "name"];
-	// navigator.contacts.find(fields, onSuccess, onError, options);
-		var deviceReadyMsg = "Device is ready.";
-		console.log(deviceReadyMsg);
+var app = {
+
+	viewModel : null,
+
+	/***************************************************************************
+	 * Application Constructor
+	 */
+	initialize : function(viewModel) {
+		this.viewModel = viewModel;
+		console.log("Connecting to Device...");
+		this.bindEvents();
+		domEditor.applyStyles();
 	},
 	
+	/***************************************************************************
+	 * Bind Event Listeners
+	 * 
+	 * Bind any events that are required on startup. Common events are: 'load',
+	 * 'deviceready', 'offline', and 'online'.
+	 */
+	bindEvents : function() {
+		document.addEventListener('deviceready', this.onDeviceReady, false);
+	},
+
+	/***************************************************************************
+	 * deviceready Event Handler
+	 * 
+	 * The scope of 'this' is the event. In order to call the 'receivedEvent'
+	 * function, we must explicitly call 'app.receivedEvent(...);'
+	 */
+	onDeviceReady : function() {
+		// deviceIsReady = true;
+		var deviceData = app.initDeviceData();
+		// TODO Oder statt deviceData APP übergeben?
+		app.viewModel.pushDeviceData(deviceData);
+		app.receivedEvent('deviceready');
+	},
+
+	/***************************************************************************
+	 * Update DOM on a Received Event
+	 */
+	receivedEvent : function(id) {
+
+		// Contacts Test:
+		// function onSuccess(contacts) {
+		// alert('Found ' + contacts.length + ' contacts.');
+		// };
+		//
+		// function onError(contactError) {
+		// alert('onError!');
+		// };
+		//
+		// // find all contacts with 'Bob' in any name field
+		// var options = new ContactFindOptions();
+		// options.filter = "Test";
+		// options.multiple = true;
+		// var fields = ["displayName", "name"];
+		// navigator.contacts.find(fields, onSuccess, onError, options);
+
+		// initContacts();
+
+		console.log('Received Event: ' + id);
+	},
+
+	// TODO Evtl. auch einfach nur Object (ohne funnction und return)
+	/***************************************************************************
+	 * DeviceAccess:
+	 */
+	initDeviceData : function() {
+		return {
+			contacts : [ {
+				id : "contact1",
+				displayName : "Tom"
+			}, {
+				id : "contact2",
+				displayName : "Jerry"
+			} ]
+		};
+	}
+
 };

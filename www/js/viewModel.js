@@ -14,7 +14,7 @@ ko.bindingHandlers.jqmRefreshList = {
 				.controlgroup("refresh");
 
 		// Apply dynamic style classes:
-		applyStyles();
+		domEditor.applyStyles();
 	}
 };
 
@@ -22,12 +22,25 @@ ko.bindingHandlers.jqmRefreshList = {
  * Main ViewModel:
  ******************************************************************************/
 function ErrandsViewModel(lists) {
+	console.log("Init ViewModel...");
+
+	// =========================================================================
+	// Properties:
+	// =========================================================================
+
 	this.lists = ko.observableArray(lists);
-
 	this.newListName = ko.observable("");
+	this.contacts = ko.observableArray([ util.createDummyContact() ]);
 
+	// ==========================================================================
+	// Operations
+	// ==========================================================================
+
+	/**
+	 * 
+	 */
 	this.addList = function() {
-		var newListID = createUID(LIST);
+		var newListID = util.createUID(LIST);
 
 		var newList = new List(newListID, this.newListName(), [], []);
 		if (this.newListName() != "") {
@@ -37,18 +50,33 @@ function ErrandsViewModel(lists) {
 		// Ensure that "this" is always this view model:
 	}.bind(this);
 
+	/**
+	 * 
+	 */
 	this.store = function() {
 		var data = JSON.stringify(this);
 		console.log("storing: " + data);
 		localStorage['lists'] = data;
 	}
 
+	/**
+	 * 
+	 */
 	this.restore = function() {
 		var data = localStorage['lists'];
 		if (data != undefined) {
 			console.log("restored: " + data);
 		}
 	}
+
+	/***************************************************************************
+	 * Data are pushed by the model, when available.
+	 */
+	this.pushDeviceData = function(deviceData) {
+		console.log("Receiving DeviceData: " + deviceData);
+		this.contacts(deviceData.contacts);
+	};
+
 }
 
 /*******************************************************************************
@@ -59,7 +87,7 @@ function List(id, name, members, tasks) {
 	 * Properties =======================================================
 	 */
 	this.id = id;
-	this.name = name;
+	this.name = ko.observable(name);
 	this.members = ko.observableArray(members);
 	this.tasks = ko.observableArray(tasks);
 	this.page = "#" + id;
@@ -71,7 +99,7 @@ function List(id, name, members, tasks) {
 	// Add New Task:
 	this.newTaskName = ko.observable("");
 	this.addTask = function() {
-		var newTaskID = createUID(TASK);
+		var newTaskID = util.createUID(TASK);
 
 		var newTask = new Task(newTaskID, this.newTaskName(), false);
 
@@ -84,12 +112,13 @@ function List(id, name, members, tasks) {
 
 	// Share List:
 	this.share = function() {
-		console.log("shareList: " + this.name);
+		console.log("shareList: " + this.name());
 	}
+
 }
 
 /*******************************************************************************
- * Tasks Object TODO Weitere Attribute hinzufügen
+ * Tasks Object TODO Weitere Attribute hinzuf√ºgen
  ******************************************************************************/
 function Task(id, name, done) {
 	/*
@@ -121,3 +150,4 @@ var lists = new Array(new List("list1", "Privat", [ "Tom", "Jerry" ], [
  ******************************************************************************/
 var viewModel = new ErrandsViewModel(lists);
 ko.applyBindings(viewModel);
+console.log("Applying DataBindings...");

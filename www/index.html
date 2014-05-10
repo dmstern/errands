@@ -87,8 +87,8 @@ under the License.
 				<br />
 				<fieldset data-role="controlgroup">
 					<div data-bind="foreach: tasks, jqmRefreshList: tasks">
-						<label data-bind="attr: { for: id }, style: { textDecoration: done() ? 'line-through' : 'none', color: done() ? 'gray' : 'inherit' }, text: name"></label>
-						<input type="checkbox" name="task" data-bind="value: id, attr: { id: id }, checked: done">
+						<label data-bind="attr: { for: id }, text: name, style: { textDecoration: done() ? 'line-through' : 'none', color: done() ? 'gray' : 'inherit' }"></label>
+						<input type="checkbox" name="task" data-bind="value: id, attr: { id: id }, checked: done" />
 					</div>
 				</fieldset>
 			</div>
@@ -96,25 +96,40 @@ under the License.
 				<div class="ui-panel-inner">
 					<div class="panel-content">
 						<!-- TODO Contacts Chooser einbauen. -->
+						<fieldset data-role="controlgroup">
+							<legend>
+								Mit wem möchtest du die Liste teilen?
+							</legend>
+							<div data-bind="foreach: $root.contacts">
+								<label data-bind="attr: { for: id }, text: displayName"></label>
+								<input type="checkbox" name="contact" data-bind="value: id, attr: { id: id }" />
+							</div>
+						</fieldset>
 						<a href="#" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true" class="close-button" role="button">Close panel</a>
 					</div>
 				</div><!-- /content wrapper for padding -->
 			</div>
-			<footer data-role="footer" data-position="fixed">
-				<a href="#contactsPanel" data-role="button" class="ui-btn ui-icon-user ui-btn-icon-left" data-bind="click: share"> Liste Teilen </a>
-			</footer>
 		</div>
+		<footer data-role="footer" data-position="fixed">
+			<a href="#contactsPanel" data-role="button" class="ui-btn ui-icon-user ui-btn-icon-left" data-bind="click: share"> Liste Teilen </a>
+		</footer>
 		<!-- /ko -->
 
-		<!-- APP SCRIPTS --------------------------------->
-		<script src="js/style.js"></script>
-		<script src="js/storage.js"></script>
+		<!-- TYPES ---------------------------->
+		<script src="js/Contact.js"></script>
+
+		<!-- BASIC SCRIPTS ------------------------------->
 		<script src="js/consts.js"></script>
 		<script src="js/util.js"></script>
+		<script src="js/style.js"></script>
+
+		<!-- APP SCRIPTS --------------------------------->
+		<script src="js/storage.js"></script>
 		<script src="js/viewModel.js"></script>
+		<script src="js/contacts.js"></script>
 		<script src="js/index.js"></script>
 		<script type="text/javascript">
-			app.initialize();
+			app.initialize(viewModel);
 		</script>
 	</body>
 </html>
