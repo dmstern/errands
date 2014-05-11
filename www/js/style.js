@@ -11,7 +11,7 @@ var domEditor = {
 	applyStyles : function() {
 		$('.add-button')
 				.addClass(
-						"ui-btn ui-icon-plus ui-btn-icon-left ui-btn-inline ui-corner-all ui-shadow ui-mini");
+						"ui-btn ui-icon-plus ui-btn-icon-left ui-btn-inline ui-corner-all ui-shadow");
 		$('.close-button')
 				.addClass(
 						"ui-link ui-btn ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all");
