@@ -1,4 +1,9 @@
-var LIST = "list";
-var TASK = "task";
-var USER = "user";
-var LISTVIEW = "_listview";
+/*******************************************************************************
+ * Konstanten für die gesamte Anwendung
+ ******************************************************************************/
+var consts = {
+	LIST : "list",
+	TASK : "task",
+	USER : "user",
+	LISTVIEW : "_listview"
+}

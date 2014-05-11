@@ -40,7 +40,7 @@ function ErrandsViewModel(lists) {
 	 * 
 	 */
 	this.addList = function() {
-		var newListID = util.createUID(LIST);
+		var newListID = util.createUID(consts.LIST);
 
 		var newList = new List(newListID, this.newListName(), [], []);
 		if (this.newListName() != "") {
@@ -83,7 +83,7 @@ function List(id, name, members, tasks) {
 	this.members = ko.observableArray(members);
 	this.tasks = ko.observableArray(tasks);
 	this.page = "#" + id;
-	this.listviewID = id + LISTVIEW;
+	this.listviewID = id + consts.LISTVIEW;
 
 	/*
 	 * Operations ===================================================
@@ -91,7 +91,7 @@ function List(id, name, members, tasks) {
 	// Add New Task:
 	this.newTaskName = ko.observable("");
 	this.addTask = function() {
-		var newTaskID = util.createUID(TASK);
+		var newTaskID = util.createUID(consts.TASK);
 
 		var newTask = new Task(newTaskID, this.newTaskName(), false);
 
