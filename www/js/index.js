@@ -30,7 +30,7 @@ var app = {
 		this.bindEvents();
 		domEditor.applyStyles();
 	},
-	
+
 	/***************************************************************************
 	 * Bind Event Listeners
 	 * 
@@ -48,10 +48,6 @@ var app = {
 	 * function, we must explicitly call 'app.receivedEvent(...);'
 	 */
 	onDeviceReady : function() {
-		// deviceIsReady = true;
-		var deviceData = app.initDeviceData();
-		// TODO Oder statt deviceData APP übergeben?
-		app.viewModel.pushDeviceData(deviceData);
 		app.receivedEvent('deviceready');
 	},
 
@@ -59,43 +55,36 @@ var app = {
 	 * Update DOM on a Received Event
 	 */
 	receivedEvent : function(id) {
-
-		// Contacts Test:
-		// function onSuccess(contacts) {
-		// alert('Found ' + contacts.length + ' contacts.');
-		// };
-		//
-		// function onError(contactError) {
-		// alert('onError!');
-		// };
-		//
-		// // find all contacts with 'Bob' in any name field
-		// var options = new ContactFindOptions();
-		// options.filter = "Test";
-		// options.multiple = true;
-		// var fields = ["displayName", "name"];
-		// navigator.contacts.find(fields, onSuccess, onError, options);
-
-		// initContacts();
-
 		console.log('Received Event: ' + id);
+
+		switch (id) {
+		case 'deviceready':
+			this.getContacts();
+			break;
+		}
 	},
 
-	// TODO Evtl. auch einfach nur Object (ohne funnction und return)
 	/***************************************************************************
 	 * DeviceAccess:
 	 */
-	initDeviceData : function() {
-		return {
-			contacts : [ {
-				id : "contact1",
-				displayName : "Tom"
-			}, {
-				id : "contact2",
-				displayName : "Jerry"
-			} ]
-		};
-		// TODO auf device api zugreifen um echte kontakte zu holen
-	}
+	getContacts : function() {
 
-};
+		var onSuccess = function(contacts) {
+			var successMsg = 'Found ' + contacts.length + ' contacts.';
+			console.log(successMsg);
+			app.viewModel.contacts(contacts);
+		}
+
+		var onError = function(contactError) {
+			var errorMsg = 'Fehler beim Laden der Kontakte!';
+			console.error(errorMsg);
+			alert(errorMsg);
+		}
+
+		var options = new ContactFindOptions();
+		options.filter = "";
+		options.multiple = true;
+		var fields = [ "displayName", "name" ];
+		navigator.contacts.find(fields, onSuccess, onError, options);
+	}
+}
