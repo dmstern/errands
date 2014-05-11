@@ -27,4 +27,4 @@ var util = {
 	createDummyContact : function() {
 		return new Contact(null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 	}
-}
+};

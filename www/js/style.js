@@ -21,4 +21,4 @@ var domEditor = {
 
 		console.log("Applying custom styles...");
 	}
-}
+};

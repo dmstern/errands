@@ -57,7 +57,7 @@ function ErrandsViewModel(lists) {
 		var data = JSON.stringify(this);
 		console.log("storing: " + data);
 		localStorage['lists'] = data;
-	}
+	};
 
 	/**
 	 * 
@@ -67,7 +67,7 @@ function ErrandsViewModel(lists) {
 		if (data != undefined) {
 			console.log("restored: " + data);
 		}
-	}
+	};
 
 	/***************************************************************************
 	 * Data are pushed by the model, when available.
@@ -113,7 +113,7 @@ function List(id, name, members, tasks) {
 	// Share List:
 	this.share = function() {
 		console.log("shareList: " + this.name());
-	}
+	};
 
 }
 
