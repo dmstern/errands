@@ -95,6 +95,7 @@ var app = {
 				displayName : "Jerry"
 			} ]
 		};
+		// TODO auf device api zugreifen um echte kontakte zu holen
 	}
 
 };
