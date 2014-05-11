@@ -69,14 +69,6 @@ function ErrandsViewModel(lists) {
 		}
 	};
 
-	/***************************************************************************
-	 * Data are pushed by the model, when available.
-	 */
-	this.pushDeviceData = function(deviceData) {
-		console.log("Receiving DeviceData: " + deviceData);
-		this.contacts(deviceData.contacts);
-	};
-
 }
 
 /*******************************************************************************
