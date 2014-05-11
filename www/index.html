@@ -32,7 +32,9 @@ under the License.
 		<script src="lib/jquery/jquery-2.1.1.min.js"></script><!-- Kein Support für IE < 9 TODO: Kompatibilität mit WebViews checken! -->
 		<script src="lib/jquery.mobile/1.4.2/jquery.mobile-1.4.2.js"></script>
 		<script src="lib/knockout/knockout-3.1.0.debug.js"></script>
-		<!-- <script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>Weinre Debugger -->
+		<!-- Weinre Debugger: -->
+		<script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>
+		<!-- <script src="http://debug.phonegap.com/target/target-script-min.js#anonymous"></script> -->
 		<title>Besorgungen</title>
 	</head>
 	<body>
@@ -108,10 +110,10 @@ under the License.
 					</div>
 				</div><!-- /content wrapper for padding -->
 			</div>
+			<footer data-role="footer" data-position="fixed">
+				<a href="#contactsPanel" data-role="button" class="ui-btn ui-icon-user ui-btn-icon-left" data-bind="click: share"> Liste Teilen </a>
+			</footer>
 		</div>
-		<footer data-role="footer" data-position="fixed">
-			<a href="#contactsPanel" data-role="button" class="ui-btn ui-icon-user ui-btn-icon-left" data-bind="click: share"> Liste Teilen </a>
-		</footer>
 		<!-- /ko -->
 
 		<!-- TYPES ---------------------------->
