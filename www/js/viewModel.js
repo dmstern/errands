@@ -84,9 +84,36 @@ function List(id, name, members, tasks) {
 	this.tasks = ko.observableArray(tasks);
 	this.page = "#" + id;
 	this.listviewID = id + consts.LISTVIEW;
+	this.countOpenTasks = ko.computed( function() {
+		var count = 0;
+		this.tasks().forEach ( function( task ) {
+			if ( ! task.done()) {
+				count++;
+			}
+		});
+		return count;
+	}, this);
+	
+	this.allDone = ko.computed( function() {
+		return this.countOpenTasks() == 0;
+	}, this);
+	
+	this.displayName = ko.computed( function() {
+		var countDisplay = " (" + this.countOpenTasks() + ")";
+
+		if (this.countOpenTasks() > 0) {
+			displayName = this.name() + countDisplay;
+		} else {
+			displayName = this.name();
+		}
+		return displayName;
+	}, this);
+	
+	// TODO anzahl offener tasks anzeigen.                  
 
 	/*
 	 * Operations ===================================================
+	 * TODO vielleicht eher in extra objekt auslagern.
 	 */
 	// Add New Task:
 	this.newTaskName = ko.observable("");
@@ -101,11 +128,23 @@ function List(id, name, members, tasks) {
 		}
 
 	}.bind(this);
+	
+	// TODO Auswahl in ViewModel einfügen! BZW. teilnehmer / mitglieder der liste anzeigen / verwalten
+	this.selection = ko.observableArray(); // --> Aber nicht hier in List!
+	
+	this.reset = function() {
+		// TODO Auswahl wieder entfernen.
+		
+		console.log("ShareList aborted by user.");
+	}
 
-	// Share List:
-	this.share = function() {
-		console.log("shareList: " + this.name());
-	};
+	// TODO Bei Klick auf Ok (Share) Auswahl in viewModel speichern 
+	// TODO -> Und: Bereits teilnehmende User für TaskListe anzeigen!
+	
+//	// Share List:
+//	this.share = function() {
+//		console.log("shareList: " + this.name());
+//	};
 
 }
 
@@ -130,8 +169,8 @@ function Task(id, name, done) {
  * Initial Test-Data:
  ******************************************************************************/
 var lists = new Array(new List("list1", "Privat", [ "Tom", "Jerry" ], [
-		new Task("task1", "Kind abholen", false),
-		new Task("task2", "Arzttermin", false) ]), new List("list2", "Arbeit",
+		new Task("task1", "Kind abholen", true),
+		new Task("task2", "Arzttermin", true) ]), new List("list2", "Arbeit",
 		[ "Tom" ], [ new Task("task3", "Druckerpatronen", false),
 				new Task("task4", "Papier", false) ]), new List("list3",
 		"Haushalt", [ "Tom", "Jerry" ], [ new Task("task5", "Milch", false),

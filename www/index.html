@@ -55,7 +55,7 @@ under the License.
 				<br />
 				<ul data-role="listview" id="lists" data-bind="foreach: lists, jqmRefreshList: lists">
 					<li data-bind="visible: $root.lists().length > 0">
-						<a href="#" data-transition="slide" data-bind="text: name, attr: { href: page }"></a>
+						<a href="#" data-transition="slide" data-bind="html: displayName, attr: { href: page, class : allDone() ? 'all-done ui-btn ui-btn-icon-right ui-icon-carat-r' : 'ui-btn ui-btn-icon-right ui-icon-carat-r'}, style: { color: allDone() ? 'gray' : 'inherit' }"></a>
 					</li>
 				</ul>
 				<br />
@@ -75,7 +75,7 @@ under the License.
 		<div data-role="page" data-bind="attr: { id: id } ">
 			<header data-role="header">
 				<a href="#home" data-role="button" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left">Home</a>
-				<h1 data-bind="text: name"></h1>
+				<h1 data-bind="text: displayName"></h1>
 			</header>
 			<div data-role="main" class="ui-content">
 				<div class="insert-new">
@@ -106,12 +106,13 @@ under the License.
 								<input type="checkbox" name="contact" data-bind="value: id, attr: { id: id }" />
 							</div>
 						</fieldset>
-						<a href="#" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true" class="close-button" role="button">Close panel</a>
+						<a href="#" data-rel="close" data-role="button" data-theme="a" class="ok-button">OK</a>
+						<a href="#" data-rel="close" data-role="button" class="close-button" data-bind="click: $root.reset">Abbrechen</a>
 					</div>
 				</div><!-- /content wrapper for padding -->
 			</div>
 			<footer data-role="footer" data-position="fixed">
-				<a href="#contactsPanel" data-role="button" class="ui-btn ui-icon-user ui-btn-icon-left" data-bind="click: share"> Liste Teilen </a>
+				<a href="#contactsPanel" data-role="button" class="ui-btn ui-icon-user ui-btn-icon-left"> Liste mit anderen teilen </a>
 			</footer>
 		</div>
 		<!-- /ko -->
@@ -127,7 +128,6 @@ under the License.
 		<!-- APP SCRIPTS --------------------------------->
 		<script src="js/storage.js"></script>
 		<script src="js/viewModel.js"></script>
-		<script src="js/contacts.js"></script>
 		<script src="js/index.js"></script>
 		<script type="text/javascript">
 			app.initialize(viewModel);
