@@ -94,25 +94,35 @@ under the License.
 					</div>
 				</fieldset>
 			</div>
-			<div data-role="panel" id="contactsPanel" data-position="right" data-display="overlay" data-dismissible="true" data-theme="b" class="overlayPanel">
+			<div data-role="panel" id="contactsPanel" data-position="right" data-display="overlay" data-dismissible="true" class="overlayPanel">
 				<div class="ui-panel-inner">
 					<div class="panel-content">
-						<fieldset data-role="controlgroup">
-							<legend>
-								Mit wem möchtest du die Liste teilen?
-							</legend>
-							<div data-bind="foreach: $root.contacts">
-								<label data-bind="attr: { for: id }, text: displayName"></label>
-								<input type="checkbox" name="contact" data-bind="value: id, attr: { id: id }" />
-							</div>
-						</fieldset>
-						<a href="#" data-rel="close" data-role="button" data-theme="a" class="ok-button">OK</a>
-						<a href="#" data-rel="close" data-role="button" class="close-button" data-bind="click: $root.reset">Abbrechen</a>
+						<div data-role="collapsible" data-expanded-icon="carat-d" data-collapsed-icon="carat-r">
+							<h4 data-bind="text: membersHeading"></h4>
+							<ul data-role="listview" data-bind="foreach: members">
+								<li>
+									<a href="#" class="ui-icon-minus" data-bind="text: displayName"></a>
+								</li>
+							</ul>
+						</div>
+						<form data-bind="submit: addMembers">
+							<fieldset data-role="collapsible" data-expanded-icon="carat-d" data-collapsed-icon="plus">
+								<legend>
+									Mitglieder hinzufügen
+								</legend>
+								<div data-role="controlgroup" data-bind="foreach: $root.contacts">
+									<label data-bind="attr: { for: id }, text: displayName"></label>
+									<input type="checkbox" name="contact" data-bind="value: id, attr: { id: id }" />
+								</div>
+								<button href="#" type="submit" data-role="button" data-theme="a" class="ok-button">Hinzufügen</button>
+							</fieldset>
+							<a href="#" data-rel="close" data-role="button" class="close-button" data-bind="click: $root.reset">Abbrechen</a>
+						</form>
 					</div>
 				</div><!-- /content wrapper for padding -->
 			</div>
 			<footer data-role="footer" data-position="fixed">
-				<a href="#contactsPanel" data-role="button" class="ui-btn ui-icon-user ui-btn-icon-left"> Liste mit anderen teilen </a>
+				<a href="#contactsPanel" data-role="button" class="ui-btn ui-icon-user ui-btn-icon-left"> Mitglieder </a>
 			</footer>
 		</div>
 		<!-- /ko -->

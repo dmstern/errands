@@ -101,6 +101,11 @@ function List(id, name, members, tasks) {
 	this.tasks = ko.observableArray(tasks);
 	this.page = "#" + id;
 	this.listviewID = id + consts.LISTVIEW;
+	
+	this.membersHeading = ko.computed(function() {
+		return consts.LIST_MEMBERS + " (" + this.members().length + ")";
+	}, this);
+	
 	this.countOpenTasks = ko.computed(function() {
 		var count = 0;
 		this.tasks().forEach(function(task) {
@@ -143,6 +148,10 @@ function List(id, name, members, tasks) {
 		}
 
 	}.bind(this);
+	
+	this.addMembers = function() {
+		console.log("addMembers...");
+	}.bind(this);
 
 	// TODO Auswahl in ViewModel einfügen! BZW. teilnehmer / mitglieder der
 	// liste anzeigen / verwalten
@@ -184,12 +193,17 @@ function Task(id, name, done) {
 /*******************************************************************************
  * Initial Test-Data:
  ******************************************************************************/
-var lists = new Array(new List("list1", "Privat", [ "Tom", "Jerry" ], [
+var users = new Array(
+		new Contact(util.createUID(consts.USER), "Donald", "Duck", "Donald", null, null, null, null, null, null, null, null, null, null),
+		new Contact(util.createUID(consts.USER), "Mickey", "Mouse", "Mickey", null, null, null, null, null, null, null, null, null, null),
+		new Contact(util.createUID(consts.USER), "Dagobert", "Duck", "Dagobert", null, null, null, null, null, null, null, null, null, null)
+		);
+var lists = new Array(new List("list1", "Privat", [ users[0], users[1] ], [
 		new Task("task1", "Kind abholen", true),
 		new Task("task2", "Arzttermin", true) ]), new List("list2", "Arbeit",
-		[ "Tom" ], [ new Task("task3", "Druckerpatronen", false),
+		[ users[2] ], [ new Task("task3", "Druckerpatronen", false),
 				new Task("task4", "Papier", false) ]), new List("list3",
-		"Haushalt", [ "Tom", "Jerry" ], [ new Task("task5", "Milch", false),
+		"Haushalt", users, [ new Task("task5", "Milch", false),
 				new Task("task6", "Brot", false) ]));
 
 /*******************************************************************************

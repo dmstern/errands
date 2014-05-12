@@ -6,5 +6,6 @@ var consts = {
 	LIST : "list",
 	TASK : "task",
 	USER : "user",
-	LISTVIEW : "_listview"
+	LISTVIEW : "_listview",
+	LIST_MEMBERS : "Listenmitglieder"
 }
