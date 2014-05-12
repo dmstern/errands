@@ -32,6 +32,23 @@ function ErrandsViewModel(lists) {
 	this.newListName = ko.observable("");
 	this.contacts = ko.observableArray([ util.createDummyContact() ]);
 
+	this.countAllOpenTasks = ko.computed(function() {
+		var count = 0;
+		this.lists().forEach(function(list) {
+			count += list.countOpenTasks();
+		});
+		return count;
+	}, this);
+
+	this.heading = ko.computed(function() {
+		var openTasks = this.countAllOpenTasks();
+		if ( openTasks > 0 ) {
+			return consts.TITLE + " (" + openTasks + ")";
+		} else {
+			return consts.TITLE;
+		}
+	}, this);
+
 	// ==========================================================================
 	// Operations
 	// ==========================================================================
@@ -84,21 +101,21 @@ function List(id, name, members, tasks) {
 	this.tasks = ko.observableArray(tasks);
 	this.page = "#" + id;
 	this.listviewID = id + consts.LISTVIEW;
-	this.countOpenTasks = ko.computed( function() {
+	this.countOpenTasks = ko.computed(function() {
 		var count = 0;
-		this.tasks().forEach ( function( task ) {
-			if ( ! task.done()) {
+		this.tasks().forEach(function(task) {
+			if (!task.done()) {
 				count++;
 			}
 		});
 		return count;
 	}, this);
-	
-	this.allDone = ko.computed( function() {
-		return this.countOpenTasks() == 0;
+
+	this.allDone = ko.computed(function() {
+		return (this.countOpenTasks() == 0) && (this.tasks().length > 0);
 	}, this);
-	
-	this.displayName = ko.computed( function() {
+
+	this.displayName = ko.computed(function() {
 		var countDisplay = " (" + this.countOpenTasks() + ")";
 
 		if (this.countOpenTasks() > 0) {
@@ -108,12 +125,10 @@ function List(id, name, members, tasks) {
 		}
 		return displayName;
 	}, this);
-	
-	// TODO anzahl offener tasks anzeigen.                  
 
 	/*
-	 * Operations ===================================================
-	 * TODO vielleicht eher in extra objekt auslagern.
+	 * Operations =================================================== TODO
+	 * vielleicht eher in extra objekt auslagern.
 	 */
 	// Add New Task:
 	this.newTaskName = ko.observable("");
@@ -128,23 +143,24 @@ function List(id, name, members, tasks) {
 		}
 
 	}.bind(this);
-	
-	// TODO Auswahl in ViewModel einfügen! BZW. teilnehmer / mitglieder der liste anzeigen / verwalten
+
+	// TODO Auswahl in ViewModel einfügen! BZW. teilnehmer / mitglieder der
+	// liste anzeigen / verwalten
 	this.selection = ko.observableArray(); // --> Aber nicht hier in List!
-	
+
 	this.reset = function() {
 		// TODO Auswahl wieder entfernen.
-		
+
 		console.log("ShareList aborted by user.");
 	}
 
-	// TODO Bei Klick auf Ok (Share) Auswahl in viewModel speichern 
+	// TODO Bei Klick auf Ok (Share) Auswahl in viewModel speichern
 	// TODO -> Und: Bereits teilnehmende User für TaskListe anzeigen!
-	
-//	// Share List:
-//	this.share = function() {
-//		console.log("shareList: " + this.name());
-//	};
+
+	// // Share List:
+	// this.share = function() {
+	// console.log("shareList: " + this.name());
+	// };
 
 }
 
