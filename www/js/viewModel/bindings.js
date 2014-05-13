@@ -24,11 +24,11 @@ ko.bindingHandlers.jqmRefreshList = {
  * Initial Test-Data:
  ******************************************************************************/
 var users = new Array(new Contact(util.createUID(consts.USER), "Donald",
-		"Duck", "Donald", null, null, null, null, null, null, null, null, null,
+		"Duck", "Don", null, null, null, null, null, null, null, null, null,
 		null), new Contact(util.createUID(consts.USER), "Mickey", "Mouse",
-		"Mickey", null, null, null, null, null, null, null, null, null, null),
+		"Mick", null, null, null, null, null, null, null, null, null, null),
 		new Contact(util.createUID(consts.USER), "Dagobert", "Duck",
-				"Dagobert", null, null, null, null, null, null, null, null,
+				"Daggy", null, null, null, null, null, null, null, null,
 				null, null));
 var lists = new Array(new List("list1", "Privat", [ users[0], users[1] ], [
 		new Task("task1", "Kind abholen", true),

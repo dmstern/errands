@@ -1,6 +1,9 @@
 /*******************************************************************************
  * Main ViewModel:
  ******************************************************************************/
+/*
+ * Hier evtl. eher Objekt mit lists und users etc. übergeben.
+ */
 function ErrandsViewModel(lists) {
 	console.log("Init ViewModel...");
 
