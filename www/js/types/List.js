@@ -65,15 +65,34 @@ function List(id, name, members, tasks) {
 		}
 
 	}.bind(this);
-
-	this.addMember = function(member) {
-		console.log("addMember: " + member.displayName);
-		this.members.push(member);
+	
+	this.isMember = function(contact) {
+		var result = this.members().indexOf(contact) > -1;
+		console.debug("isMember(" + contact.displayName + ") : " + result);
+		return result;
+	};
+	
+	this.memberStatus = function(contact) {
+		return this.isMember(contact) ? 'ui-icon-check' : 'ui-icon-plus';
+	};
+	
+	this.addMember = function(contact) {
+		
+		// Nicht hinzufügen, wenn Kontakt bereits Mitglied.
+		if (this.isMember(contact)) {
+			console.warn("Der Kontakt '" + contact.displayName + "' ist bereits Mitglied der Liste.");
+			return;
+		}
+		
+		console.log("addMember: " + contact.displayName);
+		this.members.push(contact);
+		
 	}.bind(this);
 
 	this.removeMember = function(member) {
 		console.log("removeMember: " + member.displayName);
 		this.members.remove(member);
+		
 	}.bind(this);
 
 }

@@ -134,7 +134,7 @@ under the License.
 							<h4>Mitglieder hinzufügen</h4>
 							<ul data-role="listview" data-bind="foreach: $root.contacts" data-theme="b">
 								<li>
-									<a href="#" class="ui-icon-plus" data-bind="text: displayName, click: $parent.addMember "></a>
+									<a href="#" data-bind="text: displayName, click: $parent.addMember, css: $parent.memberStatus($data), style: { 'background-color': $parent.isMember($data) ? '#aed66f' : '#333' }"></a>
 								</li>
 							</ul>
 						</div>
