@@ -23,26 +23,38 @@ under the License.
 		<meta name="format-detection" content="telephone=no" />
 		<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+
 		<link rel="stylesheet" href="lib/jquery.mobile/1.4.2/jquery.mobile-1.4.2.css" />
 		<link rel="stylesheet" href="css/index.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<script type="text/javascript" src="cordova.js"></script>
+
 		<!-- Reihenfolge der Scripts ist relevant! -->
 		<!-- <script src="lib/jquery/jquery-1.10.2.min.js"></script> -->
 		<script src="lib/jquery/jquery-2.1.1.min.js"></script><!-- Kein Support für IE < 9 TODO: Kompatibilität mit WebViews checken! -->
 		<script src="lib/jquery.mobile/1.4.2/jquery.mobile-1.4.2.js"></script>
 		<script src="lib/knockout/knockout-3.1.0.debug.js"></script>
+
 		<!-- Weinre Debugger: -->
 		<script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>
 		<!-- <script src="http://debug.phonegap.com/target/target-script-min.js#anonymous"></script> -->
-		<title data-bind="text: heading"></title>
+
+		<title>Besorgungen</title>
 	</head>
 	<body>
-		<!-- MAIN PAGE: LISTS ---------------------------->
+
+		<!------------------------------------------------------------------
+		MAIN PAGE: LISTS
+		-------------------------------------------------------------------->
 		<div data-role="page" id="home">
+
 			<header data-role="header">
 				<h1 data-bind="text: heading"></h1>
 			</header>
+
+			<!------------------------------------------------------------------
+			UI-CONTENT
+			-------------------------------------------------------------------->
 			<div data-role="main" class="ui-content">
 				<div class="insert-new">
 					<form data-bind="submit: addList">
@@ -60,6 +72,8 @@ under the License.
 				</ul>
 				<br />
 			</div>
+			<!-- END UI-CONTENT -->
+
 			<footer data-role="footer" data-position="fixed">
 				<button data-bind="click: store" class="ui-btn ui-btn-inline">
 					Save
@@ -68,15 +82,21 @@ under the License.
 					Restore
 				</button>
 			</footer>
+
 		</div>
 
-		<!-- SUBPAGE: TASKS ------------------------------>
+		<!------------------------------------------------------------------
+		SUBPAGE: TASKS
+		-------------------------------------------------------------------->
 		<!-- ko foreach: lists -->
 		<div data-role="page" data-bind="attr: { id: id } ">
+
 			<header data-role="header">
 				<a href="#home" data-role="button" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-left">Home</a>
 				<h1 data-bind="text: displayName"></h1>
 			</header>
+
+			<!-- UI-CONTENT -->
 			<div data-role="main" class="ui-content">
 				<div class="insert-new">
 					<form data-bind="submit: addTask">
@@ -94,6 +114,11 @@ under the License.
 					</div>
 				</fieldset>
 			</div>
+			<!-- END UI-CONTENT -->
+
+			<!------------------------------------------------------------------
+			CONTACTS PANEL
+			-------------------------------------------------------------------->
 			<div data-role="panel" id="contactsPanel" data-position="right" data-display="overlay" data-dismissible="true" class="overlayPanel">
 				<div class="ui-panel-inner">
 					<div class="panel-content">
@@ -107,7 +132,7 @@ under the License.
 						</div>
 						<div data-role="collapsible" data-expanded-icon="carat-d" data-collapsed-icon="plus" data-theme="b">
 							<h4>Mitglieder hinzufügen</h4>
-							<ul data-role="listview" data-bind="foreach: $root.contacts" data-theme="b"><!-- , jqmRefreshList: $root.contacts -->
+							<ul data-role="listview" data-bind="foreach: $root.contacts" data-theme="b">
 								<li>
 									<a href="#" class="ui-icon-plus" data-bind="text: displayName, click: $parent.addMember "></a>
 								</li>
@@ -115,13 +140,21 @@ under the License.
 						</div>
 						<a href="#" data-rel="close" data-role="button" class="close-button" data-bind="click: $root.reset">Abbrechen</a>
 					</div>
-				</div><!-- /content wrapper for padding -->
+				</div>
 			</div>
+			<!-- END CONTACTS PANEL -->
+
 			<footer data-role="footer" data-position="fixed">
 				<a href="#contactsPanel" data-role="button" class="ui-btn ui-icon-user ui-btn-icon-left"> Mitglieder </a>
 			</footer>
 		</div>
 		<!-- /ko -->
+
+		<!-- END SUBPAGE: TASKS -->
+
+		<!------------------------------------------------------------------
+		SCRIPTS
+		-------------------------------------------------------------------->
 
 		<!-- TYPES ---------------------------->
 		<script src="js/Contact.js"></script>
@@ -138,5 +171,6 @@ under the License.
 		<script type="text/javascript">
 			app.initialize(viewModel);
 		</script>
+
 	</body>
 </html>

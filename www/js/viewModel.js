@@ -12,9 +12,8 @@ ko.bindingHandlers.jqmRefreshList = {
 		// Refresh CheckboxFieldset after update
 		$("[data-role=controlgroup]").enhanceWithin().controlgroup()
 				.controlgroup("refresh");
-		
-		$(element).enhanceWithin().collapsibleset()
-		.collapsibleset("refresh");
+
+		$(element).enhanceWithin().collapsibleset().collapsibleset("refresh");
 
 		// Apply dynamic style classes:
 		domEditor.applyStyles();
@@ -27,9 +26,11 @@ ko.bindingHandlers.jqmRefreshList = {
 function ErrandsViewModel(lists) {
 	console.log("Init ViewModel...");
 
-	// =========================================================================
-	// Properties:
-	// =========================================================================
+	/*
+	 * =========================================================================
+	 * Properties:
+	 * =========================================================================
+	 */
 
 	this.lists = ko.observableArray(lists);
 	this.newListName = ko.observable("");
@@ -52,9 +53,11 @@ function ErrandsViewModel(lists) {
 		}
 	}, this);
 
-	// ==========================================================================
-	// Operations
-	// ==========================================================================
+	/*
+	 * =========================================================================
+	 * Operations
+	 * =========================================================================
+	 */
 
 	/**
 	 * 
@@ -98,7 +101,9 @@ function ErrandsViewModel(lists) {
  */
 function List(id, name, members, tasks) {
 	/*
-	 * Properties =======================================================
+	 * =========================================================================
+	 * Properties
+	 * =========================================================================
 	 */
 	this.id = id;
 	this.name = ko.observable(name);
@@ -137,10 +142,12 @@ function List(id, name, members, tasks) {
 	}, this);
 
 	/*
-	 * Operations =================================================== TODO
-	 * vielleicht eher in extra objekt auslagern.
+	 * =========================================================================
+	 * Operations
+	 * =========================================================================
 	 */
 	// Add New Task:
+	// TODO vielleicht eher in extra objekt auslagern?
 	this.newTaskName = ko.observable("");
 	this.addTask = function() {
 		var newTaskID = util.createUID(consts.TASK);
@@ -154,7 +161,6 @@ function List(id, name, members, tasks) {
 
 	}.bind(this);
 
-	// TODO Members hinzufügen!!!
 	this.addMember = function(member) {
 		console.log("addMember: " + member.displayName);
 		this.members.push(member);
@@ -168,18 +174,25 @@ function List(id, name, members, tasks) {
 }
 
 /*******************************************************************************
- * Tasks Object TODO Weitere Attribute hinzufügen
+ * Tasks Object
  ******************************************************************************/
+/*
+ * TODO Weitere Attribute hinzufügen
+ */
 function Task(id, name, done) {
 	/*
+	 * =========================================================================
 	 * Properties
+	 * =========================================================================
 	 */
 	this.id = id;
 	this.name = ko.observable(name);
 	this.done = ko.observable(done);
 
 	/*
+	 * =========================================================================
 	 * Operations
+	 * =========================================================================
 	 */
 
 }

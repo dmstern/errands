@@ -67,11 +67,11 @@ var app = {
 	/***************************************************************************
 	 * DeviceAccess:
 	 */
-	// TODO Evtl. doch eher komplette deviceData übergeben, zwecks loserer Kopplung.
+	// TODO Evtl. doch eher komplette deviceData übergeben, zwecks loserer Kopplung?
 	getContacts : function() {
 
 		var onSuccess = function(contacts) {
-			var successMsg = 'Found ' + contacts.length + ' contacts.';
+			var successMsg = contacts.length + ' Kontakte gefunden.';
 			console.log(successMsg);
 			app.viewModel.contacts(contacts);
 		}
