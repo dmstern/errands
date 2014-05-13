@@ -67,6 +67,7 @@ var app = {
 	/***************************************************************************
 	 * DeviceAccess:
 	 */
+	// TODO Evtl. doch eher komplette deviceData übergeben, zwecks loserer Kopplung.
 	getContacts : function() {
 
 		var onSuccess = function(contacts) {
