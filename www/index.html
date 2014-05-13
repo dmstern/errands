@@ -124,7 +124,7 @@ under the License.
 					<div class="panel-content">
 						<div data-role="collapsible" data-expanded-icon="carat-d" data-collapsed-icon="carat-r" data-bind="jqmRefreshList: members">
 							<h4><span data-bind="text: membersHeading"></span></h4>
-							<ul data-role="listview" data-bind="foreach: members">
+							<ul data-role="listview" data-bind="foreach: members, jqmRefreshList: members">
 								<li>
 									<a href="#" class="ui-icon-minus" data-bind="text: displayName, click: $parent.removeMember"></a>
 								</li>
@@ -138,7 +138,7 @@ under the License.
 								</li>
 							</ul>
 						</div>
-						<a href="#" data-rel="close" data-role="button" class="close-button" data-bind="click: $root.reset">Abbrechen</a>
+						<a href="#" data-rel="close" data-role="button" class="close-button" data-bind="click: $root.reset">Schließen</a>
 					</div>
 				</div>
 			</div>
