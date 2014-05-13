@@ -149,6 +149,7 @@ function List(id, name, members, tasks) {
 
 	}.bind(this);
 	
+	// TODO Members hinzufügen!!!
 	this.addMembers = function() {
 		console.log("addMembers...");
 	}.bind(this);
