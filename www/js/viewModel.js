@@ -12,6 +12,9 @@ ko.bindingHandlers.jqmRefreshList = {
 		// Refresh CheckboxFieldset after update
 		$("[data-role=controlgroup]").enhanceWithin().controlgroup()
 				.controlgroup("refresh");
+		
+		$(element).enhanceWithin().collapsibleset()
+		.collapsibleset("refresh");
 
 		// Apply dynamic style classes:
 		domEditor.applyStyles();
@@ -42,7 +45,7 @@ function ErrandsViewModel(lists) {
 
 	this.heading = ko.computed(function() {
 		var openTasks = this.countAllOpenTasks();
-		if ( openTasks > 0 ) {
+		if (openTasks > 0) {
 			return consts.TITLE + " (" + openTasks + ")";
 		} else {
 			return consts.TITLE;
@@ -64,7 +67,6 @@ function ErrandsViewModel(lists) {
 			this.lists.push(newList);
 			this.newListName("");
 		}
-		// Ensure that "this" is always this view model:
 	}.bind(this);
 
 	/**
@@ -91,6 +93,9 @@ function ErrandsViewModel(lists) {
 /*******************************************************************************
  * List Object
  ******************************************************************************/
+/*
+ * TODO Eher in extra js-Datei auslagern.
+ */
 function List(id, name, members, tasks) {
 	/*
 	 * Properties =======================================================
@@ -101,11 +106,11 @@ function List(id, name, members, tasks) {
 	this.tasks = ko.observableArray(tasks);
 	this.page = "#" + id;
 	this.listviewID = id + consts.LISTVIEW;
-	
+
 	this.membersHeading = ko.computed(function() {
 		return consts.LIST_MEMBERS + " (" + this.members().length + ")";
 	}, this);
-	
+
 	this.countOpenTasks = ko.computed(function() {
 		var count = 0;
 		this.tasks().forEach(function(task) {
@@ -148,29 +153,17 @@ function List(id, name, members, tasks) {
 		}
 
 	}.bind(this);
-	
+
 	// TODO Members hinzufügen!!!
-	this.addMembers = function() {
-		console.log("addMembers...");
+	this.addMember = function(member) {
+		console.log("addMember: " + member.displayName);
+		this.members.push(member);
 	}.bind(this);
 
-	// TODO Auswahl in ViewModel einfügen! BZW. teilnehmer / mitglieder der
-	// liste anzeigen / verwalten
-	this.selection = ko.observableArray(); // --> Aber nicht hier in List!
-
-	this.reset = function() {
-		// TODO Auswahl wieder entfernen.
-
-		console.log("ShareList aborted by user.");
-	}
-
-	// TODO Bei Klick auf Ok (Share) Auswahl in viewModel speichern
-	// TODO -> Und: Bereits teilnehmende User für TaskListe anzeigen!
-
-	// // Share List:
-	// this.share = function() {
-	// console.log("shareList: " + this.name());
-	// };
+	this.removeMember = function(member) {
+		console.log("removeMember: " + member.displayName);
+		this.members.remove(member);
+	}.bind(this);
 
 }
 
@@ -194,11 +187,13 @@ function Task(id, name, done) {
 /*******************************************************************************
  * Initial Test-Data:
  ******************************************************************************/
-var users = new Array(
-		new Contact(util.createUID(consts.USER), "Donald", "Duck", "Donald", null, null, null, null, null, null, null, null, null, null),
-		new Contact(util.createUID(consts.USER), "Mickey", "Mouse", "Mickey", null, null, null, null, null, null, null, null, null, null),
-		new Contact(util.createUID(consts.USER), "Dagobert", "Duck", "Dagobert", null, null, null, null, null, null, null, null, null, null)
-		);
+var users = new Array(new Contact(util.createUID(consts.USER), "Donald",
+		"Duck", "Donald", null, null, null, null, null, null, null, null, null,
+		null), new Contact(util.createUID(consts.USER), "Mickey", "Mouse",
+		"Mickey", null, null, null, null, null, null, null, null, null, null),
+		new Contact(util.createUID(consts.USER), "Dagobert", "Duck",
+				"Dagobert", null, null, null, null, null, null, null, null,
+				null, null));
 var lists = new Array(new List("list1", "Privat", [ users[0], users[1] ], [
 		new Task("task1", "Kind abholen", true),
 		new Task("task2", "Arzttermin", true) ]), new List("list2", "Arbeit",
