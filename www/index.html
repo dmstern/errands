@@ -120,7 +120,7 @@ under the License.
 			<!------------------------------------------------------------------
 			CONTACTS PANEL
 			-------------------------------------------------------------------->
-			<div data-role="panel" id="contactsPanel" data-position="right" data-display="overlay" data-dismissible="true" class="overlayPanel">
+			<div data-role="panel" data-bind="attr: { id: contactsPanelID() }" data-position="right" data-display="overlay" data-dismissible="true" class="overlayPanel">
 				<div class="ui-panel-inner">
 					<div class="panel-content">
 						<div data-role="collapsible" data-expanded-icon="carat-d" data-collapsed-icon="carat-r" data-bind="jqmRefreshList: members">
@@ -147,7 +147,7 @@ under the License.
 			<!-- END CONTACTS PANEL -->
 
 			<footer data-role="footer" data-position="fixed">
-				<a href="#contactsPanel" data-role="button" class="ui-btn ui-icon-user ui-btn-icon-left"> Mitglieder </a>
+				<a data-bind="attr: { href: contactsPanelRef() }" data-role="button" class="ui-btn ui-icon-user ui-btn-icon-left"> Mitglieder </a>
 			</footer>
 		</div>
 		<!-- /ko -->

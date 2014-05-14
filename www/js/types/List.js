@@ -45,6 +45,18 @@ function List(id, name, members, tasks) {
 		}
 		return displayName;
 	}, this);
+	
+	this.memberStatus = function(contact) {
+		return this.isMember(contact) ? 'ui-icon-check' : 'ui-icon-plus';
+	};
+
+	this.contactsPanelID = ko.computed( function() {
+		return consts.CONTACTS_PANEL + this.id;
+	}, this);
+	
+	this.contactsPanelRef = ko.computed( function() {
+		return "#" + this.contactsPanelID();
+	}, this);
 
 	/*
 	 * =========================================================================
@@ -65,17 +77,7 @@ function List(id, name, members, tasks) {
 		}
 
 	}.bind(this);
-
-	this.isMember = function(contact) {
-		var result = this.members().indexOf(contact) > -1;
-		console.debug("isMember(" + contact.displayName + ") : " + result);
-		return result;
-	};
-
-	this.memberStatus = function(contact) {
-		return this.isMember(contact) ? 'ui-icon-check' : 'ui-icon-plus';
-	};
-
+	
 	this.addMember = function(contact) {
 
 		// Nicht hinzufügen, wenn Kontakt bereits Mitglied.
@@ -100,4 +102,10 @@ function List(id, name, members, tasks) {
 
 	}.bind(this);
 
+	this.isMember = function(contact) {
+		var result = this.members().indexOf(contact) > -1;
+		console.debug("isMember(" + contact.displayName + ") : " + result);
+		return result;
+	};
+	
 }
