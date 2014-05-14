@@ -131,9 +131,8 @@ under the License.
 							</ul>
 						</div>
 						<div style="height: 8px"></div><!-- Unschön, aber da der Platz sonst nach automatischem Refresh wieder verloren geht. -->
-						<div data-role="collapsible" data-expanded-icon="carat-d" data-collapsed-icon="plus" data-theme="b" data-bind="jqmRefreshList: $root.contacts">
-							<!-- TODO Eigentlich über 'expand' event. -->
-							<h4 data-bind="event: { 'click': $root.getContacts }">Mitglieder hinzufügen</h4>
+						<div data-role="collapsible" data-expanded-icon="carat-d" data-collapsed-icon="plus" data-theme="b" data-bind="jqmRefreshList: $root.contacts, event: { 'collapsibleexpand': $root.getContacts }">
+							<h4>Mitglieder hinzufügen</h4>
 							<ul data-role="listview" data-bind="foreach: $root.contacts, jqmRefreshList: $root.contacts" data-theme="b">
 								<li>
 									<a href="#" data-bind="text: name.formatted, click: $parent.addMember, css: $parent.memberStatus($data), style: { 'background-color': $parent.isMember($data) ? '#aed66f' : '#333' }"></a>
