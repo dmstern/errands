@@ -130,8 +130,7 @@ under the License.
 								</li>
 							</ul>
 						</div>
-						<div style="height: 8px"></div>
-						<!-- TODO Bei laufender Anwendung neue Daten holen (bspw. bei expand) -->
+						<div style="height: 8px"></div><!-- Unschön, aber da der Platz sonst nach automatischem Refresh wieder verloren geht. -->
 						<div data-role="collapsible" data-expanded-icon="carat-d" data-collapsed-icon="plus" data-theme="b" data-bind="jqmRefreshList: $root.contacts">
 							<!-- TODO Eigentlich über 'expand' event. -->
 							<h4 data-bind="event: { 'click': $root.getContacts }">Mitglieder hinzufügen</h4>

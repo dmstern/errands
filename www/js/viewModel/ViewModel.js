@@ -52,6 +52,11 @@ function ErrandsViewModel(lists) {
 			this.newListName("");
 		}
 	}.bind(this);
+	
+	this.getContacts = function(event, ui) {
+		console.debug("getContacts");
+		app.getContacts();
+	}
 
 	/**
 	 * 
