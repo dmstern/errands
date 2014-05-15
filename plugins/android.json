@@ -23,10 +23,6 @@
                         {
                             "xml": "<feature name=\"Contacts\"><param name=\"android-package\" value=\"org.apache.cordova.contacts.ContactManager\" /></feature>",
                             "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"ContactPicker\"><param name=\"android-package\" value=\"com.badrit.ContactPicker.ContactPickerPlugin\" /></feature>",
-                            "count": 1
                         }
                     ]
                 }
@@ -48,11 +44,11 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.READ_CONTACTS\" />",
-                            "count": 2
+                            "count": 1
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\" />",
-                            "count": 2
+                            "count": 1
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
@@ -77,9 +73,6 @@
             "PACKAGE_NAME": "de.beuth_hochschule.errands"
         },
         "org.apache.cordova.contacts": {
-            "PACKAGE_NAME": "de.beuth_hochschule.errands"
-        },
-        "com.badrit.ContactPicker": {
             "PACKAGE_NAME": "de.beuth_hochschule.errands"
         }
     },
