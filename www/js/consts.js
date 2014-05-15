@@ -9,4 +9,4 @@ var consts = {
 	LISTVIEW : "_listview",
 	LIST_MEMBERS : "Listenmitglieder",
 	CONTACTS_PANEL : 'contactsPanel'
-}
+};

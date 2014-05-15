@@ -77,13 +77,13 @@ var app = {
 			var successMsg = contacts.length + ' Kontakte gefunden.';
 			console.log(successMsg);
 			app.viewModel.contacts(contacts);
-		}
+		};
 
 		var onError = function(contactError) {
 			var errorMsg = 'Fehler beim Laden der Kontakte!';
 			console.error(errorMsg);
 			alert(errorMsg);
-		}
+		};
 
 		var options = new ContactFindOptions();
 		options.filter = "";
@@ -91,4 +91,4 @@ var app = {
 		var fields = [ "displayName", "name" ];
 		navigator.contacts.find(fields, onSuccess, onError, options);
 	}
-}
+};

@@ -56,7 +56,7 @@ function ErrandsViewModel(lists) {
 	this.getContacts = function(event, ui) {
 		console.debug("getContacts");
 		app.getContacts();
-	}
+	};
 
 	/**
 	 * 
