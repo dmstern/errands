@@ -27,11 +27,12 @@ var users = new Array(new Contact(util.createUID(consts.USER), "Donald",
 		new ContactName("Donald Duck", "Duck", null, null, null, null), "Don",
 		null, null, null, null, null, null, null, null, null, null),
 		new Contact(util.createUID(consts.USER), "Mickey", new ContactName(
-				"Mickey Mouse", "Mouse", "Mickey", null, null, null), "Mick", null, null, null,
-				null, null, null, null, null, null, null), new Contact(util
-				.createUID(consts.USER), "Dagobert", new ContactName("Dagobert Duck",
-				"Duck", "Dagobert", null, null, null), "Daggy", null, null, null, null,
-				null, null, null, null, null, null));
+				"Mickey Mouse", "Mouse", "Mickey", null, null, null), "Mick",
+				null, null, null, null, null, null, null, null, null, null),
+		new Contact(util.createUID(consts.USER), "Dagobert", new ContactName(
+				"Dagobert Duck", "Duck", "Dagobert", null, null, null),
+				"Daggy", null, null, null, null, null, null, null, null, null,
+				null));
 var lists = new Array(new List("list1", "Privat", [ users[0], users[1] ], [
 		new Task("task1", "Kind abholen", true),
 		new Task("task2", "Arzttermin", true) ]), new List("list2", "Arbeit",

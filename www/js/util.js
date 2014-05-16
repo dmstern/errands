@@ -25,6 +25,7 @@ var util = {
 	 * http://plugins.cordova.io/#/package/org.apache.cordova.contacts
 	 */
 	createDummyContact : function() {
-		return new Contact(null, null, new ContactName(null, null, null, null, null, null), null, [], [], [], [], [], null, null, [], [], []);
+		return new Contact(null, null, new ContactName(null, null, null, null,
+				null, null), null, [], [], [], [], [], null, null, [], [], []);
 	}
 };
