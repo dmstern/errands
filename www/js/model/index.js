@@ -19,6 +19,7 @@
 
 var app = {
 
+	deviceReady : false,
 	viewModel : null,
 
 	/***************************************************************************
@@ -59,7 +60,7 @@ var app = {
 
 		switch (id) {
 		case 'deviceready':
-			this.getContacts();
+			this.deviceReady = true;
 			break;
 		}
 	},
@@ -70,13 +71,20 @@ var app = {
 	/*
 	 * TODO Evtl. doch eher komplette deviceData übergeben, zwecks loserer
 	 * Kopplung?
+	 * 
 	 */
 	getContacts : function() {
+		var result = null;
+		
+		if ( ! this.deviceReady ) {
+			console.error('Gerät ist nicht bereit!');
+			return null;
+		}
 
 		var onSuccess = function(contacts) {
 			var successMsg = contacts.length + ' Kontakte gefunden.';
 			console.log(successMsg);
-			app.viewModel.contacts(contacts);
+			result = contacts;
 		};
 
 		var onError = function(contactError) {
@@ -90,5 +98,7 @@ var app = {
 		options.multiple = true;
 		var fields = [ "displayName", "name" ];
 		navigator.contacts.find(fields, onSuccess, onError, options);
+		
+		return result;
 	}
 };

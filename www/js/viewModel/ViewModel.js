@@ -1,11 +1,10 @@
 /*******************************************************************************
  * Main ViewModel:
  ******************************************************************************/
-/*
- * Hier evtl. eher Objekt mit lists und users etc. übergeben.
- */
 function ErrandsViewModel(lists) {
 	console.log("Init ViewModel...");
+	
+	var self = this;
 
 	/*
 	 * =========================================================================
@@ -53,9 +52,12 @@ function ErrandsViewModel(lists) {
 		}
 	}.bind(this);
 
+	/*
+	 * Besser wäre, wenn die Daten aus dem Model an die aus dem ViewModel gebunden werden könnten, sodass die GUI sich automatisch aktualisiert, wenn sich die Daten im Model geändert haben. 
+	 */
 	this.getContacts = function(event, ui) {
 		console.debug("getContacts");
-		app.getContacts();
+		self.contacts(app.getContacts());
 	};
 
 	/**
