@@ -49,6 +49,7 @@ var app = {
 	 * function, we must explicitly call 'app.receivedEvent(...);'
 	 */
 	onDeviceReady : function() {
+		this.deviceReady = true;
 		app.receivedEvent(events.DEVICE_READY);
 	},
 
@@ -56,13 +57,7 @@ var app = {
 	 * Update DOM on a Received Event
 	 */
 	receivedEvent : function(id) {
-		console.log('Received Event: ' + id);
-
-		switch (id) {
-		case events.DEVICE_READY:
-			this.deviceReady = true;
-			break;
-		}
+		console.log('App received Event: ' + id);
 	},
 
 	/***************************************************************************
