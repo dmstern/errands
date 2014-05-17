@@ -10,3 +10,10 @@ var consts = {
 	LIST_MEMBERS : "Listenmitglieder",
 	CONTACTS_PANEL : 'contactsPanel'
 };
+
+/**
+ * EventTypes for mapping EventHandlers to a specific type of event.
+ */
+var events = {
+	FOUND_CONTACTS : 'foundcontacts'
+};

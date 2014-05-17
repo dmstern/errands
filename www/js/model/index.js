@@ -1,10 +1,10 @@
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
+ * distributed with self work for additional information
+ * regarding copyright ownership.  The ASF licenses self file
  * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
+ * "License"); you may not use self file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
@@ -20,7 +20,7 @@
 var app = {
 
 	deviceReady : false,
-	viewModel : null,
+	observerMap : new ObserverMap(),
 
 	/***************************************************************************
 	 * Application Constructor
@@ -74,17 +74,15 @@ var app = {
 	 * 
 	 */
 	getContacts : function() {
-		var result = null;
-		
-		if ( ! this.deviceReady ) {
+
+		if (!app.deviceReady) {
 			console.error('Gerät ist nicht bereit!');
-			return null;
 		}
 
 		var onSuccess = function(contacts) {
 			var successMsg = contacts.length + ' Kontakte gefunden.';
 			console.log(successMsg);
-			result = contacts;
+			app.observerMap.notifyObservers(events.FOUND_CONTACTS, contacts);
 		};
 
 		var onError = function(contactError) {
@@ -98,7 +96,11 @@ var app = {
 		options.multiple = true;
 		var fields = [ "displayName", "name" ];
 		navigator.contacts.find(fields, onSuccess, onError, options);
-		
-		return result;
+
+	},
+
+	addEventListener : function(eventType, eventHandler) {
+		app.observerMap.put(eventType, eventHandler);
 	}
+
 };

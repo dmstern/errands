@@ -22,6 +22,6 @@ var domEditor = {
 						"ui-panel ui-panel-position-right ui-panel-display-overlay ui-body-b ui-panel-animate ui-panel-open");
 		$('[data-role=button]').addClass("ui-corner-all");
 
-		console.log("Applying custom styles...");
+		console.debug("Applying custom styles...");
 	}
 };

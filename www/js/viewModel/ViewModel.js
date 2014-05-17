@@ -2,9 +2,9 @@
  * Main ViewModel:
  ******************************************************************************/
 function ErrandsViewModel(lists) {
-	console.log("Init ViewModel...");
-	
+
 	var self = this;
+	// app.addObserver(self);
 
 	/*
 	 * =========================================================================
@@ -12,26 +12,26 @@ function ErrandsViewModel(lists) {
 	 * =========================================================================
 	 */
 
-	this.lists = ko.observableArray(lists);
-	this.newListName = ko.observable("");
-	this.contacts = ko.observableArray([ util.createDummyContact() ]);
+	self.lists = ko.observableArray(lists);
+	self.newListName = ko.observable("");
+	self.contacts = ko.observableArray([ util.createDummyContact() ]);
 
-	this.countAllOpenTasks = ko.computed(function() {
+	self.countAllOpenTasks = ko.computed(function() {
 		var count = 0;
-		this.lists().forEach(function(list) {
+		self.lists().forEach(function(list) {
 			count += list.countOpenTasks();
 		});
 		return count;
-	}, this);
+	}, self);
 
-	this.heading = ko.computed(function() {
-		var openTasks = this.countAllOpenTasks();
+	self.heading = ko.computed(function() {
+		var openTasks = self.countAllOpenTasks();
 		if (openTasks > 0) {
 			return consts.TITLE + " (" + openTasks + ")";
 		} else {
 			return consts.TITLE;
 		}
-	}, this);
+	}, self);
 
 	/*
 	 * =========================================================================
@@ -42,29 +42,31 @@ function ErrandsViewModel(lists) {
 	/**
 	 * 
 	 */
-	this.addList = function() {
+	self.addList = function() {
 		var newListID = util.createUID(consts.LIST);
 
-		var newList = new List(newListID, this.newListName(), [], []);
-		if (this.newListName() != "") {
-			this.lists.push(newList);
-			this.newListName("");
+		var newList = new List(newListID, self.newListName(), [], []);
+		if (self.newListName() != "") {
+			self.lists.push(newList);
+			self.newListName("");
 		}
-	}.bind(this);
+	}.bind(self);
 
 	/*
-	 * Besser wäre, wenn die Daten aus dem Model an die aus dem ViewModel gebunden werden könnten, sodass die GUI sich automatisch aktualisiert, wenn sich die Daten im Model geändert haben. 
+	 * TODO Besser wäre, wenn die Daten aus dem Model an die aus dem ViewModel
+	 * gebunden werden könnten, sodass die GUI sich automatisch aktualisiert,
+	 * wenn sich die Daten im Model geändert haben.
 	 */
-	this.getContacts = function(event, ui) {
+	self.getContacts = function(event, ui) {
 		console.debug("getContacts");
-		self.contacts(app.getContacts());
+		app.getContacts();
 	};
 
 	/**
 	 * 
 	 */
-	this.store = function() {
-		var data = JSON.stringify(this);
+	self.store = function() {
+		var data = JSON.stringify(self);
 		console.log("storing: " + data);
 		localStorage['lists'] = data;
 	};
@@ -72,11 +74,22 @@ function ErrandsViewModel(lists) {
 	/**
 	 * 
 	 */
-	this.restore = function() {
+	self.restore = function() {
 		var data = localStorage['lists'];
 		if (data != undefined) {
 			console.log("restored: " + data);
 		}
 	};
 
+	self.bindEvents = function() {
+		app.addEventListener(events.FOUND_CONTACTS, function(contacts) {
+			self.contacts(contacts);
+		});
+	};
+
+	/*
+	 * Init ViewModel:
+	 */
+	console.log("Init ViewModel...");
+	self.bindEvents();
 }
