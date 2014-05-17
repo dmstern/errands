@@ -9,7 +9,7 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing,
+ * Unless required by modellicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
@@ -17,13 +17,13 @@
  * under the License.
  */
 
-var app = {
+var model = {
 
 	deviceReady : false,
 	observerMap : new ObserverMap(),
 
 	/***************************************************************************
-	 * Application Constructor
+	 * modellication Constructor
 	 */
 	initialize : function(viewModel) {
 		this.viewModel = viewModel;
@@ -46,18 +46,18 @@ var app = {
 	 * deviceready Event Handler
 	 * 
 	 * The scope of 'this' is the event. In order to call the 'receivedEvent'
-	 * function, we must explicitly call 'app.receivedEvent(...);'
+	 * function, we must explicitly call 'model.receivedEvent(...);'
 	 */
 	onDeviceReady : function() {
-		this.deviceReady = true;
-		app.receivedEvent(events.DEVICE_READY);
+		model.deviceReady = true;
+		model.receivedEvent(events.DEVICE_READY);
 	},
 
 	/***************************************************************************
 	 * Update DOM on a Received Event
 	 */
 	receivedEvent : function(id) {
-		console.log('App received Event: ' + id);
+		console.log('model received Event: ' + id);
 	},
 
 	/***************************************************************************
@@ -70,14 +70,15 @@ var app = {
 	 */
 	getContacts : function() {
 
-		if (!app.deviceReady) {
+		if (!model.deviceReady) {
 			console.error('Gerät ist nicht bereit!');
+			return;
 		}
 
 		var onSuccess = function(contacts) {
 			var successMsg = contacts.length + ' Kontakte gefunden.';
 			console.log(successMsg);
-			app.observerMap.notifyObservers(events.FOUND_CONTACTS, contacts);
+			model.observerMap.notifyObservers(events.FOUND_CONTACTS, contacts);
 		};
 
 		var onError = function(contactError) {
@@ -95,7 +96,7 @@ var app = {
 	},
 
 	addEventListener : function(eventType, eventHandler) {
-		app.observerMap.put(eventType, eventHandler);
+		model.observerMap.put(eventType, eventHandler);
 	}
 
 };

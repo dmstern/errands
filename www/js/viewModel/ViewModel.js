@@ -4,7 +4,7 @@
 function ErrandsViewModel(lists) {
 
 	var self = this;
-	// app.addObserver(self);
+	// model.addObserver(self);
 
 	/*
 	 * =========================================================================
@@ -59,7 +59,7 @@ function ErrandsViewModel(lists) {
 	 */
 	self.getContacts = function(event, ui) {
 		console.debug("getContacts");
-		app.getContacts();
+		model.getContacts();
 	};
 
 	/**
@@ -82,7 +82,7 @@ function ErrandsViewModel(lists) {
 	};
 
 	self.bindEvents = function() {
-		app.addEventListener(events.FOUND_CONTACTS, function(contacts) {
+		model.addEventListener(events.FOUND_CONTACTS, function(contacts) {
 			self.contacts(contacts);
 		});
 	};
