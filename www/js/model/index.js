@@ -39,7 +39,8 @@ var model = {
 	 * events.DEVICE_READY, 'offline', and 'online'.
 	 */
 	bindEvents : function() {
-		document.addEventListener(events.DEVICE_READY, this.onDeviceReady, false);
+		document.addEventListener(events.DEVICE_READY, this.onDeviceReady,
+				false);
 	},
 
 	/***************************************************************************
