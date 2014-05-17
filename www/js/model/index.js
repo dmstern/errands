@@ -25,8 +25,7 @@ var model = {
 	/***************************************************************************
 	 * modellication Constructor
 	 */
-	initialize : function(viewModel) {
-		this.viewModel = viewModel;
+	initialize : function() {
 		console.log("Connecting to Device...");
 		this.bindEvents();
 		domEditor.applyStyles();
@@ -64,12 +63,7 @@ var model = {
 	/***************************************************************************
 	 * DeviceAccess:
 	 */
-	/*
-	 * TODO Evtl. doch eher komplette deviceData übergeben, zwecks loserer
-	 * Kopplung?
-	 * 
-	 */
-	getContacts : function() {
+	findContacts : function() {
 
 		if (!model.deviceReady) {
 			console.error('Gerät ist nicht bereit!');
