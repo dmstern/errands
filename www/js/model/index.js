@@ -36,10 +36,10 @@ var app = {
 	 * Bind Event Listeners
 	 * 
 	 * Bind any events that are required on startup. Common events are: 'load',
-	 * 'deviceready', 'offline', and 'online'.
+	 * events.DEVICE_READY, 'offline', and 'online'.
 	 */
 	bindEvents : function() {
-		document.addEventListener('deviceready', this.onDeviceReady, false);
+		document.addEventListener(events.DEVICE_READY, this.onDeviceReady, false);
 	},
 
 	/***************************************************************************
@@ -49,7 +49,7 @@ var app = {
 	 * function, we must explicitly call 'app.receivedEvent(...);'
 	 */
 	onDeviceReady : function() {
-		app.receivedEvent('deviceready');
+		app.receivedEvent(events.DEVICE_READY);
 	},
 
 	/***************************************************************************
@@ -59,7 +59,7 @@ var app = {
 		console.log('Received Event: ' + id);
 
 		switch (id) {
-		case 'deviceready':
+		case events.DEVICE_READY:
 			this.deviceReady = true;
 			break;
 		}
