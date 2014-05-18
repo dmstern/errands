@@ -23,18 +23,16 @@ function ObserverMap() {
 	 */
 	self.put = function(eventType, eventHandler) {
 
-		var matchingHandlerList = self.findHandlerList(eventType);
+		var handlerList = self.findHandlerList(eventType);
 
-		if (matchingHandlerList != null) {
-			matchingHandlerList.addEventHandler(eventHandler);
-		} else {
+		if (handlerList == null) {
 			// If no HandlerList was found, create a new one.
 			console.debug("No matching HandlerList found, "
 					+ "creating a new one.");
-			var newHandlerList = new HandlerList(eventType);
-			newHandlerList.addEventHandler(eventHandler);
-			self.handlerLists.push(newHandlerList);
+			handlerList = new HandlerList(eventType);
+			self.handlerLists.push(handlerList);
 		}
+		handlerList.addEventHandler(eventHandler);
 
 	};
 
@@ -49,9 +47,10 @@ function ObserverMap() {
 	 *            that observers can handle them.
 	 */
 	self.notifyObservers = function(eventType, data) {
-
 		console.debug("Searching for observer to notify...");
+
 		var matchingHandlerList = self.findHandlerList(eventType);
+
 		if (matchingHandlerList != null) {
 			console.debug();
 			matchingHandlerList.notifyObservers(data);
@@ -66,9 +65,10 @@ function ObserverMap() {
 	 * Find a List of EventHandlers for a specified eventType string.
 	 */
 	self.findHandlerList = function(eventType) {
+		console.debug("Searching for matching HandlerList....");
+
 		var result = null;
 
-		console.debug("Searching for matching HandlerList....");
 		self.handlerLists.forEach(function(handlerList) {
 			if (handlerList.eventType.valueOf() === eventType.valueOf()) {
 				console.debug("Found matching HandlerList: " + eventType);
@@ -88,7 +88,7 @@ function ObserverMap() {
  * A List of EventHandlers for one EventType.
  * 
  * @param eventType
- * 		A String that specifies the Type of the event.
+ *            A String that specifies the Type of the event.
  */
 function HandlerList(eventType) {
 	var self = this;
