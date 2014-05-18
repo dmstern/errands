@@ -60,7 +60,7 @@ function ObserverMap() {
 					+ "Nobody to notify.");
 		}
 
-	}
+	};
 
 	/**
 	 * Find a List of EventHandlers for a specified eventType string.
@@ -81,7 +81,7 @@ function ObserverMap() {
 		}
 
 		return result;
-	}
+	};
 }
 
 /**

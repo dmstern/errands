@@ -23,12 +23,11 @@ var model = {
 	observerMap : new ObserverMap(),
 
 	/***************************************************************************
-	 * modellication Constructor
+	 * Model Constructor
 	 */
 	initialize : function() {
 		console.log("Connecting to Device...");
 		this.bindEvents();
-		domEditor.applyStyles();
 	},
 
 	/***************************************************************************

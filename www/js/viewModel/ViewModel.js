@@ -2,9 +2,9 @@
  * Main ViewModel:
  ******************************************************************************/
 function ErrandsViewModel(lists) {
+	console.log("Init ViewModel...");
 
 	var self = this;
-	// model.addObserver(self);
 
 	/*
 	 * =========================================================================
@@ -87,9 +87,5 @@ function ErrandsViewModel(lists) {
 		});
 	};
 
-	/*
-	 * Init ViewModel:
-	 */
-	console.log("Init ViewModel...");
 	self.bindEvents();
 }
