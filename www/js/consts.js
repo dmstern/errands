@@ -8,7 +8,8 @@ var consts = {
 	USER : "user",
 	LISTVIEW : "_listview",
 	LIST_MEMBERS : "Listenmitglieder",
-	CONTACTS_PANEL : 'contactsPanel'
+	CONTACTS_PANEL : 'contactsPanel',
+	DUMMY_CONTACT : null
 };
 
 /**

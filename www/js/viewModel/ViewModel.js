@@ -14,7 +14,7 @@ function ErrandsViewModel(lists) {
 
 	self.lists = ko.observableArray(lists);
 	self.newListName = ko.observable("");
-	self.contacts = ko.observableArray([ util.createDummyContact() ]);
+	self.contacts = ko.observableArray([ util.getDummyContact() ]);
 
 	self.countAllOpenTasks = ko.computed(function() {
 		var count = 0;
@@ -57,10 +57,19 @@ function ErrandsViewModel(lists) {
 	 * gebunden werden könnten, sodass die GUI sich automatisch aktualisiert,
 	 * wenn sich die Daten im Model geändert haben.
 	 */
-	self.getContacts = function(event, ui) {
-		console.debug("getContacts");
+	self.findContacts = function(event, ui) {
+		console.debug("Fordere Kontaktdaten an...");
 		model.findContacts();
 	};
+
+	self.contactsNotEmty = ko.computed(function() {
+		if (self.contacts().length == 0
+				|| self.contacts()[0] === util.getDummyContact()) {
+			return false;
+		} else {
+			return true;
+		}
+	}, this);
 
 	/**
 	 * 

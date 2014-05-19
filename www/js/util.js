@@ -28,6 +28,13 @@ var util = {
 		return new Contact(null, null, new ContactName(null, null, null, null,
 				null, null), null, [], [], [], [], [], null, null, [], [], []);
 	},
+	
+	getDummyContact : function() {
+		if (consts.DUMMY_CONTACT === null) {
+			consts.DUMMY_CONTACT = this.createDummyContact();
+		}
+		return consts.DUMMY_CONTACT;
+	},
 
 	/***************************************************************************
 	 * Initial Test-Data:
