@@ -62,17 +62,16 @@ function ErrandsViewModel(lists) {
 		model.findContacts();
 	};
 
+	/**
+	 * 
+	 */
 	self.contactsNotEmty = ko.computed(function() {
-		if (self.contacts().length == 0
-				|| self.contacts()[0] === util.getDummyContact()) {
-			return false;
-		} else {
-			return true;
-		}
+		return (self.contacts().length != 0
+				&& self.contacts()[0] != util.getDummyContact());
 	}, this);
 
 	/**
-	 * 
+	 * TODO Rausschmeißen, wenn nicht benötigt.
 	 */
 	self.store = function() {
 		var data = JSON.stringify(self);
@@ -81,7 +80,7 @@ function ErrandsViewModel(lists) {
 	};
 
 	/**
-	 * 
+	 * TODO Rausschmeißen, wenn nicht benötigt.
 	 */
 	self.restore = function() {
 		var data = localStorage['lists'];

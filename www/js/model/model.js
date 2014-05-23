@@ -17,6 +17,9 @@
  * under the License.
  */
 
+/*
+ * TODO Eigenleistung deutlich machen!!!
+ */
 var model = {
 
 	deviceReady : false,
@@ -91,8 +94,16 @@ var model = {
 
 	},
 
+	/**
+	 * 
+	 */
 	addEventListener : function(eventType, eventHandler) {
 		model.observerMap.put(eventType, eventHandler);
+	},
+	
+	removeEventListener : function(eventType, eventHandler) {
+		// TODO implement.
+		console.error("removeEventListener(): Diese Methode ist noch nicht implementiert.");
 	}
 
 };
