@@ -29,7 +29,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"ContactPicker\"><param name=\"ios-package\" value=\"ContactPicker\" /></feature>",
+                            "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -89,7 +89,7 @@
         "org.apache.cordova.contacts": {
             "PACKAGE_NAME": "de.beuth-hochschule.errands"
         },
-        "com.badrit.ContactPicker": {
+        "org.apache.cordova.console": {
             "PACKAGE_NAME": "de.beuth-hochschule.errands"
         }
     },

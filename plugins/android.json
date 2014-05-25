@@ -74,6 +74,9 @@
         },
         "org.apache.cordova.contacts": {
             "PACKAGE_NAME": "de.beuth_hochschule.errands"
+        },
+        "org.apache.cordova.console": {
+            "PACKAGE_NAME": "de.beuth_hochschule.errands"
         }
     },
     "dependent_plugins": {}
