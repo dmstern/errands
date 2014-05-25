@@ -86,25 +86,25 @@ function List(id, name, members, tasks) {
 		 * Kontakte können Objekte doch wieder zweimal hinzugefügt werden).
 		 */
 		if (this.isMember(contact)) {
-			console.warn("Der Kontakt '" + contact.displayName
+			console.warn("Der Kontakt '" + contact.name.formatted
 					+ "' ist bereits Mitglied der Liste.");
 			return;
 		}
 
-		console.log("addMember: " + contact.displayName);
+		console.log("addMember: " + contact.name.formatted);
 		this.members.push(contact);
 
 	}.bind(this);
 
 	this.removeMember = function(member) {
-		console.log("removeMember: " + member.displayName);
+		console.log("removeMember: " + member.name.formatted);
 		this.members.remove(member);
 
 	}.bind(this);
 
 	this.isMember = function(contact) {
 		var result = this.members().indexOf(contact) > -1;
-		console.debug("isMember(" + contact.displayName + ") : " + result);
+		console.debug("isMember(" + contact.name.formatted + ") : " + result);
 		return result;
 	};
 	
