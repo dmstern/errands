@@ -64,6 +64,7 @@ var model = {
 
 	/***************************************************************************
 	 * DeviceAccess:
+	 * TODO options, filter (und evtl. auch onSuccess) als Parameter übergeben.
 	 */
 	findContacts : function() {
 
@@ -89,7 +90,7 @@ var model = {
 		var options = new ContactFindOptions();
 		options.filter = "";
 		options.multiple = true;
-		var fields = [ "name" ];
+		var fields = [ "*" ];
 		navigator.contacts.find(fields, onSuccess, onError, options);
 
 	},
