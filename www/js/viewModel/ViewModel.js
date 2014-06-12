@@ -6,11 +6,9 @@ function ErrandsViewModel(lists) {
 
 	var self = this;
 
-	/*
-	 * =========================================================================
+	/* =========================================================================
 	 * Properties:
-	 * =========================================================================
-	 */
+	 * =======================================================================*/
 
 	self.lists = ko.observableArray(lists);
 	self.newListName = ko.observable("");
@@ -33,15 +31,10 @@ function ErrandsViewModel(lists) {
 		}
 	}, self);
 
-	/*
-	 * =========================================================================
+	/* =========================================================================
 	 * Operations
-	 * =========================================================================
-	 */
+	 * =======================================================================*/
 
-	/**
-	 * 
-	 */
 	self.addList = function() {
 		var newListID = util.createUID(consts.LIST);
 
@@ -52,42 +45,15 @@ function ErrandsViewModel(lists) {
 		}
 	}.bind(self);
 
-	/*
-	 * TODO Besser wäre, wenn die Daten aus dem Model an die aus dem ViewModel
-	 * gebunden werden könnten, sodass die GUI sich automatisch aktualisiert,
-	 * wenn sich die Daten im Model geändert haben.
-	 */
 	self.findContacts = function(event, ui) {
 		console.debug("Fordere Kontaktdaten an...");
 		model.findContacts();
 	};
 
-	/**
-	 * 
-	 */
 	self.contactsNotEmty = ko.computed(function() {
 		return (self.contacts().length != 0
 				&& self.contacts()[0] != util.getDummyContact());
 	}, this);
-
-	/**
-	 * TODO Rausschmeißen, wenn nicht benötigt.
-	 */
-	self.store = function() {
-		var data = JSON.stringify(self);
-		console.log("storing: " + data);
-		localStorage['lists'] = data;
-	};
-
-	/**
-	 * TODO Rausschmeißen, wenn nicht benötigt.
-	 */
-	self.restore = function() {
-		var data = localStorage['lists'];
-		if (data != undefined) {
-			console.log("restored: " + data);
-		}
-	};
 
 	self.bindEvents = function() {
 		model.addEventListener(events.FOUND_CONTACTS, function(contacts) {

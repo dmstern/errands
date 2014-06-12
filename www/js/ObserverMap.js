@@ -1,10 +1,10 @@
-/**
+/*******************************************************************************
  * Helper for an observable object.
  * 
  * Saves a list of the observer's eventHandlers for each eventType, that are
  * mapped to a given eventType-string and calls them when notifyObservers() is
  * called.
- */
+ ******************************************************************************/
 function ObserverMap() {
 	console.debug("Init new ObserverMap.");
 
@@ -36,7 +36,7 @@ function ObserverMap() {
 
 	};
 
-	/**
+	/***************************************************************************
 	 * Notifies all saved observers that are registered for the given eventType.
 	 * 
 	 * @param eventType

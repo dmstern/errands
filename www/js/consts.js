@@ -12,9 +12,9 @@ var consts = {
 	DUMMY_CONTACT : null
 };
 
-/**
+/*******************************************************************************
  * EventTypes for mapping EventHandlers to a specific type of event.
- */
+ ******************************************************************************/
 var events = {
 	DEVICE_READY : 'deviceready',
 	FOUND_CONTACTS : 'foundcontacts'

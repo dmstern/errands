@@ -30,7 +30,7 @@ under the License.
 		<script type="text/javascript" src="cordova.js"></script>
 
 		<!-- Reihenfolge der Scripts ist relevant! -->
-		<script src="lib/jquery/jquery-2.1.1.min.js"></script><!-- Kein Support für IE < 9 TODO: Kompatibilität mit WebViews checken! -->
+		<script src="lib/jquery/jquery-2.1.1.min.js"></script>
 		<script src="lib/jquery.mobile/1.4.2/jquery.mobile-1.4.2.js"></script>
 		<script src="lib/knockout/knockout-3.1.0.debug.js"></script>
 
@@ -69,17 +69,6 @@ under the License.
 				<br />
 			</div>
 			<!-- END UI-CONTENT -->
-
-			<footer data-role="footer" data-position="fixed">
-				<!-- Nur Test-Buttons für Speicher-Funktion / Funktionstüchtigkeit noch nicht geklärt. -->
-				<!-- 				<button data-bind="click: store" class="ui-btn ui-btn-inline">
-				Save
-				</button>
-				<button data-bind="click: restore" class="ui-btn ui-btn-inline">
-				Restore
-				</button> -->
-			</footer>
-
 		</div>
 
 		<!------------------------------------------------------------------
@@ -125,7 +114,7 @@ under the License.
 								</li>
 							</ul>
 						</div>
-						<div style="height: 8px"></div><!-- Unschön, aber da der Platz sonst nach automatischem Refresh wieder verloren geht. -->
+						<div style="height: 8px"></div><!-- Platz geht sonst nach automatischem Refresh wieder verloren. -->
 						<div data-role="collapsible" data-expanded-icon="carat-d" data-collapsed-icon="plus" data-theme="b" data-bind="jqmRefreshList: $root.contacts, event: { 'collapsibleexpand': $root.findContacts }">
 							<h4>Mitglieder hinzufügen</h4>
 							<ul data-role="listview" data-bind="foreach: $root.contacts, jqmRefreshList: $root.contacts, visible: $root.contactsNotEmty" data-theme="b">

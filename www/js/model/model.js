@@ -16,9 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 /*
- * TODO Eigenleistung deutlich machen!!!
+ * Grundgerüst von Cordova erstellt.
  */
 var model = {
 
@@ -64,7 +63,6 @@ var model = {
 
 	/***************************************************************************
 	 * DeviceAccess:
-	 * TODO options, filter (und evtl. auch onSuccess) als Parameter übergeben.
 	 */
 	findContacts : function() {
 
@@ -95,9 +93,6 @@ var model = {
 
 	},
 
-	/**
-	 * 
-	 */
 	addEventListener : function(eventType, eventHandler) {
 		model.observerMap.put(eventType, eventHandler);
 	},
